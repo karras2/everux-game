@@ -133,10 +133,9 @@
             <button id="startButton" tabindex="2">Play</button>
           </div>
         </div>
-        <div class="startMenuHolder shrinkable">
+       <div class="startMenuHolder" allowtransparency="true">
           <div class="changelogSelectorContainer">
-            <div class="changelogSelector" id="changelogSelector">
-              <span data-type="changelog" title="Every single update">Changelog</span>
+            <iframe id="patchNotesIFrame" src="changelog.html" seamless='seamless' frameBorder="0">Patch notes go here!</iframe>
             </div>
           </div>
           <div id="patchNotes" class="shadowScroll updates"></div>
