@@ -54,11 +54,10 @@
         <div class="startMenuHolder">
           <div class="sliderHolder">
             <div class="slider" id="startMenuSlidingContent">
-              <center><img src= "https://everux.onrender.com/EveruxIcon.png">
+              <center><img src="EveruxIcon.png" class="icon" /></center>
               <h1>everux.io</h1>
               <div class="serverSelector shadowScroll"><table><tbody id="serverSelector"></tbody></table></div>
               <input type="text" autofocus tabindex="1" spellcheck="false" placeholder="This is the tale of" id="playerNameInput" maxlength="24">
-               <input type="text" class="conceal" tabindex="3" placeholder="Token not required. For Beta Testers only." id="playerKeyInput" maxlength="64" />  
             </div>
            
             <div class="slider" id="startMenuSlidingTrigger">
@@ -140,34 +139,15 @@
                 </tr><tr>
                 </tr>
               </table>
-              <div class="optionsHeader">More Links</div>
-              <center>
-                <a tabindex="-1" href="https://glitch.com/edit/#!/arraz-template?path=README.md">Private Server Template</a>
-                <br>
-                <a tabindex="-1" href="/custom-shape">Custom Shape Builder</a>
-                <br>
-                <a tabindex="-1" href="https://codepen.io/road-to-100k/full/MPyOeQ/">Road's Custom Theme Maker</a>
-                <br>
-                <a tabindex="-1" href="http://arras-proxy.surge.sh/">Proxy Server</a>
-                &nbsp;&nbsp;&nbsp;
-                <a tabindex="-1" href="https://arras-lb.glitch.me/donate">Donate via Stripe</a>
-              </center>
+              <input type="text" class="conceal" tabindex="3" placeholder="Token (Not required, can be left blank)" id="playerKeyInput" maxlength="64" />
             </div>
           </div>
           <div style="position: relative; bottom: -10px;">
             <button id="startButton" tabindex="2">Play</button>
           </div>
         </div>
-        <div class="startMenuHolder shrinkable">
-          <div class="changelogSelector" id="changelogSelector">
-            <span data-type="updates" class="active" title="All major updates">Updates</span>
-            <span data-type="events" title="Major updates involving events or gamemodes">Events &amp; Gamemodes</span>
-            <span data-type="balances" title="Every balance update, major or minor">Balance</span>
-            <span data-type="changelog" title="Every single update">Changelog</span>
-            <iframe id="patchNotesIFrame" src="changelog.html" seamless='seamless' height="300" frameBorder="1">Patch notes go here!</iframe>
-            <!-- <iframe id="patchNotesIFrame" src="privateinfo.html" seamless='seamless' frameBorder="1">Patch notes go here!</iframe>--->
-          </div>
-          <div id="patchNotes" class="updates"></div>
+        <div class="startMenuHolder" allowtransparency="true">
+          <iframe id="patchNotesIFrame" src="changelog.html" seamless='seamless' frameBorder="0">Patch notes go here!</iframe>
         </div>
       </div>
     </div>
