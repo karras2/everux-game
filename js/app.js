@@ -815,34 +815,65 @@ if (!global.server) {
 "><td>Linode</td><td>Europe</td><td>3 Team Maze Domination</td></tr>
     </tbody></table>*/
 
-let serverSelector = document.getElementById('serverSelector')
-let selectedServer
+let serverSelector = document.getElementById("serverSelector");
+let selectedServer;
+let plUpdater;
+
+async function getPlayerData(server, element, locInfo) {
+    let isSecure = (server.secure) || (location.protocol === "https:" ? 1 : -1);
+    let url = `${isSecure === 1 ? "https" : "http"}://${server.at}/status.json`;
+
+    let oof = setTimeout(() => {
+        server.name = (server.name) ? server.name : '?'; //  != ''
+        server.players = (server.players) ? server.players : '?/?'; // != '' || server.players
+        if (element && locInfo) element.textContent = `${server.name} | ${locInfo} | ${server.players}`;
+    }, 3000);
+
+
+    await util.pullJSON(url).then(res => {
+        clearTimeout(oof);
+        server.name = res.name;
+        server.gamemode = res.gamemode;
+        server.players = `${res.players}/${res.max_players}`;
+        if (element && locInfo) element.textContent = `${server.name} | ${locInfo} | ${server.players}`;
+    });
+};
+
 for (let server of global.servers) {
-    if ((server.visible == null || server.visible > privilege) && global.server !== server) continue
-    let [hostCode, regionCode] = server.code.split('-')
-    let tr = document.createElement('tr')
-    tr.appendChild(document.createElement('td')).textContent = global.codeTable[0][hostCode]
-    tr.appendChild(document.createElement('td')).textContent = global.codeTable[1][regionCode][0]
-    tr.appendChild(document.createElement('td')).textContent = server.name
-    if (server.featured)
-        tr.classList.add('featured')
-     if (server.testing)
-        tr.classList.add('testing')
+    if (!server.visible && global.server !== server) continue; // == null
+
+    let [hostCode, regionCode] = server.code.split("-"),
+        locInfo = `${global.codeTable[0][hostCode]} | ${global.codeTable[1][regionCode][0]}`,
+        tr = document.createElement("tr"),
+        td = document.createElement("td");
+    td.textContent = `Loading... | ${locInfo} | Loading...`;
+
+    //get player and gamemode info from server
+    getPlayerData(server, td, locInfo);
+
+    tr.appendChild(td);
+    if (server.featured) tr.classList.add("featured");
+    if (server.testing) tr.classList.add("testing");
     tr.onclick = () => {
-        selectedServer.classList.remove('selected')
-        selectedServer = tr
-        selectedServer.classList.add('selected')
-        global.server = server
-        localStorage.gameMode = server.id
-        location.hash = '#' + server.id + (global.partyLink ? global.partyLink.toString() : '')
-    }
-    serverSelector.appendChild(tr)
+        if (selectedServer) selectedServer.classList.remove("selected");
+        selectedServer = tr;
+        selectedServer.classList.add("selected");
+        global.server = server;
+        localStorage.gameMode = server.id;
+        location.hash = "#" + server.id;
+
+        //getMockups();
+        //plUpdater = setInterval(() => getPlayerData(global.server, tr.childNodes[0], locInfo), 5000);
+        //.childNodes.item("child")
+    };
+    serverSelector.appendChild(tr);
     if (global.server === server) {
-        selectedServer = tr
-        selectedServer.classList.add('selected')
+        selectedServer = tr;
+        selectedServer.classList.add("selected");
         setTimeout(() => {
-            serverSelector.parentNode.parentNode.scrollTop = tr.offsetTop - 30
-        })
+            serverSelector.parentNode.parentNode.scrollTop = tr.offsetTop - 30;
+        });
+        //getMockups();
     }
 }
 
