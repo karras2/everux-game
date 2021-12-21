@@ -4459,11 +4459,11 @@ if ( text.name === 'Mega Lord Poseidon') {
                     ctx.globalAlpha = 1;
                     ctx.lineWidth = 3;
                     drawGuiRoundRect(x, y, width, height, 25, true); // Border
-                    if (++ticker % 9 === 0 && !global.mobile) {
-                        y = xStart;
-                        x += height + internalSpacing;
+                    if (++ticker % 6 === 0 && !global.mobile) {
+                        x = xStart;
+                        y += height + internalSpacing;
                     } else {
-                        y += glide * (width + internalSpacing);
+                        x += glide * (width + internalSpacing);
                     }
                 });
                 // Draw box
