@@ -154,7 +154,7 @@ const global = {
                 untrusted: true
             },
             {
-                visible: 0,
+                visible: 1,
                 id: 'va',
                 type: '0unk',
                 name: 'Maze FFA',
@@ -164,7 +164,7 @@ const global = {
                 prefer: true
             },
             {
-                visible: 0,
+                visible: 1,
                 id: 'wa',
                 type: '0unk',
                 code: 'glitch-virginia',
@@ -173,7 +173,7 @@ const global = {
                 prefer: false
             },
             {
-                visible: 0,
+                visible: 1,
                 id: 'ba',
                 type: '0unk',
                 code: 'glitch-virginia',
