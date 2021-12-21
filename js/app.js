@@ -4632,6 +4632,21 @@ const gameDrawDead = (() => {
         if (!global.finalKillers.length) return '🤷 Well that was kinda dumb huh';
         return '🔪 Succumbed to ' + global.finalKillers.map(e => util.addArticle(mockups[e].name)).join(' and ') + '.';
     };
+    let deathSplash = [[
+      'bruh',
+    ], [
+      'Read these messages for more tips for playing ;)',
+      'The hardest boss is the Eternal.',
+      'Celestials can not be fought alone. Try gathering a group to help!',
+      'An Elite bosses weakness is traps! Use this to your advantage.',
+      "Have a high score? Submit it on Discord!",
+    ], [
+      'Bosses can quickly destroy players. Try hiding behind a base to take cover!',
+    ], [
+      'lol you died'
+    ]]
+    let randomdeathSplash = deathSplash[Math.floor(Math.random() * deathSplash.length)]
+    let deathSplashTip = randomdeathSplash[Math.floor(Math.random() * randomdeathSplash.length)]
     return () => {
         clearScreen(color.black, 0.25);
         let x = global.screenWidth / 2, y = global.screenHeight / 2 - 50;
@@ -4643,7 +4658,7 @@ const gameDrawDead = (() => {
             yy = global.screenHeight / 2 - 35 + scale * position.middle.x * 0.707;
         drawEntity(xx-190-len/2, yy-10, picture, 1.5, 1, 0.5 * scale / picture.realSize, -Math.PI/4, true);
         text.taunt.draw(
-            'lol you died', x, y - 80, 8, color.guiwhite, 'center'
+            deathSplash, x, y - 80, 8, color.guiwhite, 'center'
         );
         text.level.draw(
             'Level ' + gui.__s.getLevel() + ' ' + mockups[gui.type].name + '.',
@@ -4727,38 +4742,34 @@ window.$createProfile = (() => {
     }
 })();
 
+
 const gameDrawBeforeStart = (() => {
-    let text = {
-        connecting: TextObj(),
-        message: TextObj(),
-        tip: TextObj(),
-    };
-    let tipSets = [[
-      'Tip: You can view and edit your keybinds in the options menu.',
-      'Tip: You can play on mobile by just going to arraz-io.glitch.me on your phone!',
+  let text = {
+    connecting: TextObj(),
+    message: TextObj(),
+  };
+  let tips = [[
+      "Don't like the look of the game? Try changing the theme!",
+      'You can hold N to level up instantly!',
     ], [
-      'Tip: You can have the shield and health bar be separated by going to the options menu.',
-      'Tip: If arraz is having a low frame rate, you can try enabling low graphics in the options menu.',
-      'Tip: You can make traps rounded with the classic trap setting in the options menu.',
-      'Tip: You can create your own private server with the template in the link on the options menu.',
-      'Tip: You can create your own theme with the custom theme makerin the link on the options menu.',
+      'Press the E key to toggle auto-fire.',
+      'Press the C key to toggle auto-spin.',
+      'Press the R key to override AI turrets.',
+      'Press Y to toggle ON/OFF the class tree!',
+      'To set the original Diep.io traps, change it with Classic Traps in the menu.',
     ], [
-      'Teaming in FFA or FFA Maze is frowned upon, but when taken to the extremes, you can be punished.',
-      'Witch hunting is when you continuously target someone and follow them. This is frowned upon, but when taken to the extremes, you can be punished.',
-      'Multiboxing is when you use a script to control multiple tanks at the same time. This is considered CHEATING and will result in a ban.'
+      'Bosses can quickly destroy players. Try hiding behind a base to take cover!',
     ], [
-      'If you have a throat or mouth, you are at risk of throat cancer.',
-      'My name jeff!!!',
-      'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK'
+      'Hold L to view client/server information!'
     ]]
-    let selectedSet = tipSets[Math.floor(Math.random() * tipSets.length)]
-    let selectedTip = selectedSet[Math.floor(Math.random() * selectedSet.length)]
+    let randomizedTip = tips[Math.floor(Math.random() * tips.length)]
+    let tip = randomizedTip[Math.floor(Math.random() * randomizedTip.length)]
     return () => {
-        clearScreen(color.white, 0.5);
-        text.connecting.draw('Connecting...', global.screenWidth / 2, global.screenHeight / 2, 30, color.guiwhite, 'center');
-        text.message.draw(global.message, global.screenWidth / 2, global.screenHeight / 2 + 30, 15, color.lgreen, 'center');
-        text.message.draw(selectedTip, global.screenWidth / 2, global.screenHeight / 2 + 75, 15, color.guiwhite, 'center');
-    };
+    clearScreen(color.white, 0.5);
+    text.connecting.draw('Connecting...', global.screenWidth / 2, global.screenHeight / 2, 30, color.guiwhite, 'center');
+    text.message.draw(global.message, global.screenWidth / 2, global.screenHeight / 2 + 30, 15, color.lgreen, 'center');
+    text.message.draw(tip, global.screenWidth / 2, global.screenHeight / 2 + 75, 15, color.guiwhite, 'center');
+  };
 })();
 
 const gameDrawDisconnected = (() => {
