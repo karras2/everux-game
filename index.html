@@ -127,73 +127,57 @@
                <input type="text" class="conceal" tabindex="3" placeholder="Token not required. For Beta Testers only." id="playerKeyInput" maxlength="64" />  
             </div>
           </div>
-          <div style="position: relative; bottom: -10px;">
-            <button id="startButton" tabindex="2">Play</button>
-          </div>
-        </div>
-       <div class="startMenuHolder" allowtransparency="true">
-          <div class="changelogSelectorContainer">
-            <iframe id="patchNotesIFrame" src="changelog.html" seamless='seamless' frameBorder="0">Patch notes go here!</iframe>
-            </div>
-          </div>
-          <div id="patchNotes" class="shadowScroll updates"></div>
-        </div>
+<div style="position: relative; bottom: -10px;">
+   <button id="startButton" tabindex="2">Play</button>
+</div>
+</div>
+<div class="startMenuHolder shrinkable">
+   <div class="changelogSelectorContainer">
+      <div class="changelogSelector" id="changelogSelector">
       </div>
-    </div>
+   </div>
+   <iframe id="patchNotesIFrame" src="changelog.html" seamless='seamless' frameBorder="0">Patch notes go here!</iframe>
+          <space>Links</space>
+      <div class="bottomHolder" style="width:1000px;"> <a style="background:#5294ff" href="https://docs.google.com/forms/d/e/1FAIpQLSfdQAClW9D6bd-xtO5ZSWpu_Qggp0H7mAniM86YfV5mMlLX1A/viewform">WR Submission</a><a style="background:#7289da" href="https://discord.gg/UTsuCA6M4h">Join Discord</a><a style="background:#0095ff" href="">WR Sheet</a></div>
   </div>
-  <!-- JS -->
-  <script>
-  aiptag.cmd.display.push(function() { aipDisplayTag.display('arras-io_336x280'); });
-  if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(registration => console.log('Service Worker Registered'))
-  }
-  (function() {
-    var clicked = 0
-    var trigger = document.getElementById('startMenuSlidingTrigger')
-    var optionArrow = document.getElementById('optionArrow')
-    var viewOptionText = document.getElementById('viewOptionText')
-    var sliderHolder = document.getElementsByClassName('sliderHolder')[0]
-    var sliders = document.getElementsByClassName('slider')
-    trigger.onclick = function() {
-      clicked = 1 - clicked
-      optionArrow.style.transform = optionArrow.style.webkitTransform = clicked ? 'rotate(45deg)' : 'rotate(-45deg)'
-      viewOptionText.innerText = clicked ? 'close options' : 'view options'
-      if (clicked) {
-        sliderHolder.classList.add('slided')
-      } else {
-        sliderHolder.classList.remove('slided')
-      }
-      sliders[0].style.opacity = 1 - clicked
-      sliders[2].style.opacity = clicked
-    }
-    /*
-    var hostnames = ['arrax-client.glitch.me']
-    if (window !== window.top || hostnames.indexOf(window.location.hostname) === -1) {
-      window.addEventListener('load', function() {
-        document.write('<h1>You are on a framed version of arrax, the original game is at <a href="http://arrax-client.glitch.me/">http://arrax-client.glitch.me/</a></h1>')
-      })
-      document.body.addEventListener('click', function() {
-        window.top.location = 'http://arrax-client.glitch.me/'
-      })
-      window.top.location = 'http://arrax-client.glitch.me/'
-    }
-    */
-    window.onerror = function(message, source, lineno, colno, error) {
-      window.onerror = null
-      if (error) error = error.toString()
-      console.warn('The game crashed, refreshing page to recover from error')
-      if (error == null && lineno == 0 && colno == 0) return
-      var e = JSON.stringify({
-        message: message,
-        source: source,
-        lineno: lineno,
-        colno: colno,
-        error: error
-      })
-      prompt('The game may have crashed, refreshing page to recover from error. Error information: ', e)
-    }
-  })()
-  </script>
+</div>
+</div>
+</div>
+<!-- JS -->
+<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+<script>
+   var clicked = true;
+   $("#startMenuSlidingTrigger").on('click', function() {
+     if (clicked) {
+       clicked = false;
+       $(this).html('<h3 class="nopadding">close options/help 🡶</h3>');
+       $(".slider").css({
+         "top": "-265px"
+       })
+     } else {
+       clicked = true;
+       $(this).html('<h3 class="nopadding">view options/help 🡲</h3>');
+       $(".slider").css({
+         "top": 0
+       });
+     }
+   });
+</script>
+<script>
+   $(document).ready(function() {
+     // This is because it acts weird in Chrome for whatever reason...
+     $("#twitterHolder").css({
+       "height": "100%"
+     });
+     // This is for updates
+     if (localStorage.getItem('updated') === 'datgudshit') {
+       localStorage.setItem('updated', false);
+       $('#patchNotesIFrame').load(function() {
+         $("#patchNotesIFrame").contents().find('#patchNotes').prepend('<update></update> ');
+       });
+     }
+   });
+</script>
   <script type="module" src="js/lib/fasttalk.js"></script>
   <script type="module" src="js/lib/global.js"></script>
   <script type="module" src="js/lib/util.js"></script>
