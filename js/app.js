@@ -803,18 +803,6 @@ if (!global.server) {
     }
     global.server = closest[Math.floor(Math.random() * closest.length)]
 }
-/*<table><tbody><tr><td>Glitch</td><td>US East</td><td>FFA</td></tr>
-<tr><td>OpenShift</td><td>US East</td><td>FFA</td></tr><tr><td>Glitch</td><td>US East</td><td>4TDM</td></tr>
-
-<tr><td>OpenShift</td><td>US East</td><td>4TDM</td></tr>
-<tr><td>WeDeploy</td><td>US East</td><td>4TDM</td></tr><tr><td>OpenShift</td><td>US East</td><td>Maze Mothership</td></tr>
-<tr><td>BuyVM</td><td>US West</td><td>Maze Mothership</td></tr><tr><td>Heroku</td><td>US East</td><td>3 Team Maze Domination</td></tr>
-
-<tr style="
-  color: #8ABC3F;
-"><td>Linode</td><td>Europe</td><td>3 Team Maze Domination</td></tr>
-    </tbody></table>*/
-
 let serverSelector = document.getElementById("serverSelector");
 let selectedServer;
 let plUpdater;
@@ -834,7 +822,7 @@ async function getPlayerData(server, element, locInfo) {
         clearTimeout(oof);
         server.name = res.name;
         server.gamemode = res.gamemode;
-        server.players = `${res.players}/${res.max_players}`;
+        server.players = `${res.players}/15`;
         if (element && locInfo) element.textContent = `${server.name} | ${locInfo} | ${server.players}`;
     });
 };
@@ -4287,14 +4275,13 @@ if ( text.name === 'Mega Lord Poseidon') {
             // Text
             if (global.showDebug) {
                 text.debug[6].draw(
-                    'Arraz.io',
+                    'everux.io',
                     x + len, textY - 6*14 - 2,
                     15, color.blue, 'right'
                 );
              
               text.debug[0].draw(
-               // 'Players: ' + Math.floor(Math.random() * Math.floor(Math.random() * 9999) + 1),
-                'Players: 2079',
+                'Players: ' + global.server.players,
                 x + len, textY - 5*14,
                 10, color.teal, 'right'
             );
@@ -4311,7 +4298,7 @@ if ( text.name === 'Mega Lord Poseidon') {
                
             } else {
                 text.debug[6].draw(
-                    'Arraz.io',
+                    'everux.io',
                     x + len, textY - 3*14 - 2,
                     15, color.blue, 'right'
                 );
@@ -4319,17 +4306,17 @@ if ( text.name === 'Mega Lord Poseidon') {
             text.debug[3].draw(
                 'Client Speed: ' + metrics.rendertime + ' FPS',
                 x + len, textY - 2*14,
-                10, metrics.rendertime > 10 ? color.pink : color.orange, 'right'
+                10, metrics.rendertime > 10 ? color.guiwhite : color.orange, 'right'
             );
             text.debug[2].draw(
                 'Server Speed: ' + (100 * gui.fps).toFixed(2) + '%',
                 x + len, textY - 1*14,
-                10, gui.fps === 1 ? color.green : color.orange, 'right'
+                10, gui.fps === 1 ? color.guiwhite : color.orange, 'right'
             );
             text.debug[1].draw(
                 lag.toFixed(1) + ' ms  ' + global.server.code + ' :' + global.server.type + ':',
                 x + len, textY,
-                10, color.blue, 'right'
+                10, color.guiwhite, 'right'
             );
         // let PlayerNumber = Math.floor(Math.random() * 5000) + 1;
            
