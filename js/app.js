@@ -1741,54 +1741,72 @@ const socketInit = (() => {
                 }
                 break;
             // =====================================================
-
             case 'u': { // uplink
-                let camtime = m[0],
-                    camx = m[1],
-                    camy = m[2],
-                    camfov = m[3],
-                    camvx = m[4],
-                    camvy = m[5],
-                    data = m.slice(6);
-                
-                if (camtime > player.lastUpdate) {
-                  lag.add(getNow() - camtime);
-                  player.time = camtime + lag.get();
-                  metrics.rendergap = camtime - player.lastUpdate;
-                  player.lastUpdate = camtime;
-                  
-                  convert.begin(data);
-                  convert.gui();
-                  convert.data();
-                  
-                    player.lastx = player.cx;
-                    player.lasty = player.cy;
-                    player.lastvx = player.vx;
-                    player.lastvy = player.vy;
-                    // Get new physics values
-                    player.cx = camx;
-                    player.cy = camy;
-                    player.vx = global.died ? 0 : camvx;
-                    player.vy = global.died ? 0 : camvy;
-                    // Figure out where we're rendering if we don't yet know
-                    if (isNaN(player.renderx)) { player.renderx = player.cx; }
-                    if (isNaN(player.rendery)) { player.rendery = player.cy; }
-                    moveCompensation.reset();
-                    // Fov stuff
-                    player.view = camfov;
-                    if (!player.renderv) { player.renderv = 2000; }
-                    // Metrics
-                    metrics.lastlag = metrics.lag;
-                    metrics.lastuplink = getRelative();
-                } else {
-                    console.warn(`Old data! Last given time: ${ player.time }; offered packet timestamp: ${ camtime }.`);
-                }
-              
-                socket.talk('d', Math.max(player.lastUpdate, camtime));
-                socket.cmd.talk();
-                updateTimes++; // metrics
-                
-            } break;
+                  let c = m
+            //     camera.time=lerp(camera.time,c[0], 0.1);
+              camera.time = m[0]
+                              camera.x=lerp(camera.x, c[1],  0.3);
+                              camera.y=lerp(camera.y,c[2], 0.3);
+                              camera.fov=lerp(camera.fov,c[3], 0.3);
+                              camera.vx=lerp(camera.vx,c[4], 0.3);
+                              camera.vy=lerp(camera.vy,c[5], 0.3);
+                let camtime = camera.time,
+                    camx = camera.x,
+                    camy = camera.y,
+                    camfov = camera.fov,
+                    camvx = camera.vx,
+                    camvy = camera.vy,
+          // We'll have to do protocol decoding on the remaining data
+          theshit = m.slice(6);
+        // Process the data
+        if (camtime > player.lastUpdate) { // Don't accept out-of-date information.
+          // Time shenanigans
+          lag.add(getNow() - camtime);
+          player.time = camtime + lag.get();
+          metrics.rendergap = camtime - player.lastUpdate;
+          if (metrics.rendergap <= 0) {
+            console.log('yo some bullshit is up wtf');
+          }
+          player.lastUpdate = camtime;
+          // Convert the gui and entities
+          convert.begin(theshit);
+          convert.gui();
+          convert.data();
+          // Save old physics values
+          player.lastx = player.x;
+          player.lasty = player.y;
+          player.lastvx = player.vx;
+          player.lastvy = player.vy;
+          // Get new physics values
+          player.x = camx;
+          player.y = camy;
+          player.vx = global.died ? 0 : camvx;
+          player.vy = global.died ? 0 : camvy;
+          // Figure out where we're rendering if we don't yet know
+          if (isNaN(player.renderx)) {
+            player.renderx = player.x;
+          }
+          if (isNaN(player.rendery)) {
+            player.rendery = player.y;
+          }
+          moveCompensation.reset();
+          // Fov stuff
+          player.view = camfov;
+          if (isNaN(player.renderv) || player.renderv === 0) {
+            player.renderv = 2000;
+          }
+          // Metrics
+          metrics.lastlag = metrics.lag;
+          metrics.lastuplink = getNow();
+        } else {
+          console.log("Old data! Last given time: " + player.time + "; offered packet timestamp: " + camtime + ".");
+        }
+        // Send the downlink and the target
+        socket.talk('d', Math.max(player.lastUpdate, camtime));
+        socket.cmd.talk();
+        updateTimes++; // metrics
+      }
+      break;
             case 'b': { // broadcasted minimap
                 convert.begin(m);
                 convert.broadcast();
@@ -3553,7 +3571,7 @@ const gameDraw = (() => {
                 getPrediction: () => frameProgress,
             };
         };
-    })();/*/
+    })();
     (() => {
         // Protected functions
         function interpolate(p1, p2, v1, v2, ts, tt) {
@@ -3594,7 +3612,7 @@ const gameDraw = (() => {
                 getPrediction: () => { return t; },
             };
         };
-    })();//*/
+    })();
     // Make graphs
     const timingGraph = graph(),
         lagGraph = graph(),
