@@ -74,7 +74,7 @@ h3 {
 }
 
 .serverSelector {
-  height: 75px;
+  height: 80px;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
@@ -85,7 +85,7 @@ h3 {
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
 }
 .serverSelector tr {
-  color: #828282;
+  color: #525252;
   cursor: pointer;
 }
 .serverSelector tr.featured {
@@ -409,7 +409,7 @@ body.mobile #optMobile, body.mobile #optBorders {
   position: relative;
   top: 0px;
   opacity: 1;
-  width: 100%;
+  width: 100%;r
   transition: top 500ms, opacity 500ms;
 }
 .slided .slider {
