@@ -144,7 +144,6 @@ const global = {
                 at: 'private',
                 untrusted: true
             },
-            //  { visible: 2, id: 'x',  type: '0unk', name: 'Localhost',              code: 'local-local',      at: 'localhost:8080', secure: -1 },
             {
                 visible: 1,
                 id: 'q',
@@ -162,7 +161,7 @@ const global = {
                 code: 'glitch-virginia',
                 at: 'arrax-maze.glitch.me',
                 secure: 1,
-                prefer: false
+                prefer: true
             },
             {
                 visible: 0,
