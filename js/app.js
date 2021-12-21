@@ -1,24 +1,18 @@
 /*global require, console*/
 /*jshint -W097*/
 /*jshint browser: true*/
+"use strict";
 
-
-
-const reduce = Function.bind.call(Function.call, Array.prototype.reduce);
-const isEnumerable = Function.bind.call(Function.call, Object.prototype.propertyIsEnumerable);
-const concat = Function.bind.call(Function.call, Array.prototype.concat);
-const keys = Reflect.ownKeys;
-
-if (!Object.values) {
-    Object.values = function values(O) {
-        return reduce(keys(O), (v, k) => concat(v, typeof k === 'string' && isEnumerable(O, k) ? [O[k]] : []), [])
-    }
+function lerp(a, b, x) {
+  return a + x * (b - a);
 }
-
-if (!Object.entries) {
-    Object.entries = function entries(O) {
-        return reduce(keys(O), (e, k) => concat(e, typeof k === 'string' && isEnumerable(O, k) ? [[k, O[k]]] : []), [])
-    }
+const camera = {
+  time: 0,
+  x: 0,
+  y: 0,
+  fov: 10000,
+  vx: 0,
+  vy: 0,
 }
 
 // Fundamental requires <3
@@ -651,100 +645,100 @@ var gui = {
             ];
         }
     },
-    skills: [
-        {
-            amount: 0,
-            color: 'purple',
-            cap: 1,
-            softcap: 1,
-        }, {
-            amount: 0,
-            color: 'pink',
-            cap: 1,
-            softcap: 1,
-        }, {
-            amount: 0,
-            color: 'blue',
-            cap: 1,
-            softcap: 1,
-        }, {
-            amount: 0,
-            color: 'lgreen',
-            cap: 1,
-            softcap: 1,
-        }, {
-            amount: 0,
-            color: 'red',
-            cap: 1,
-            softcap: 1,
-        }, {
-            amount: 0,
-            color: 'yellow',
-            cap: 1,
-            softcap: 1,
-        }, {
-            amount: 0,
-            color: 'green',
-            cap: 1,
-            softcap: 1,
-        }, {
-            amount: 0,
-            color: 'teal',
-            cap: 1,
-            softcap: 1,
-        }, {
-            amount: 0,
-            color: 'gold',
-            cap: 1,
-            softcap: 1,
-        }, {
-            amount: 0,
-            color: 'orange',
-            cap: 1,
-            softcap: 1,
+  skills: [{
+    amount: 0,
+    color: 'pink',
+    cap: 1,
+    softcap: 1,
+  }, {
+    amount: 0,
+    color: 'purple',
+    cap: 1,
+    softcap: 1,
+  }, {
+    amount: 0,
+    color: 'teal',
+    cap: 1,
+    softcap: 1,
+  }, {
+    amount: 0,
+    color: 'blue',
+    cap: 1,
+    softcap: 1,
+  }, {
+    amount: 0,
+    color: 'green',
+    cap: 1,
+    softcap: 1,
+  }, {
+    amount: 0,
+    color: 'lgreen',
+    cap: 1,
+    softcap: 1,
+  }, {
+    amount: 0,
+    color: 'yellow',
+    cap: 1,
+    softcap: 1,
+  }, {
+    amount: 0,
+    color: 'gold',
+    cap: 1,
+    softcap: 1,
+  }, {
+    amount: 0,
+    color: 'orange',
+    cap: 1,
+    softcap: 1,
+  }, {
+    amount: 0,
+    color: 'red',
+    cap: 1,
+    softcap: 1,
+  }],
+  points: 0,
+  upgrades: [],
+  playerid: -1,
+  __s: (() => {
+    let truscore = 0;
+    let levelscore = 0;
+    let deduction = 0;
+    let level = 0;
+    let score = Smoothbar(0, 10);
+    return {
+      setScore: s => {
+        if (s) {
+          score.set(s);
+          if (deduction > score.get()) {
+            level = 0;
+            deduction = 0;
+          }
+        } else {
+          score = Smoothbar(0, 10);
+          level = 0;
         }
-    ],
-    points: 0,
-    upgrades: [],
-    playerid: -1,
-    __s: (() => {
-        let levelscore = 0;
-        let deduction = 0;
-        let level = 0;
-        let score = Smoothbar(0, 10);
-        let scoreForLevel = level => Math.ceil(1.8 * Math.pow(level + 1, 1.8) - 2 * level + 1)
-        return {
-            setScore: s => {
-                if (s) {
-                    score.set(s);
-                    if (deduction > score.get()) { level = 0; deduction = 0; }
-                } else {
-                    score = Smoothbar(0, 10);
-                    level = 0;
-                }
-            },
-            update: () => {
-                levelscore = scoreForLevel(level)
-                if (score.get() >= deduction + levelscore) {
-                    deduction += levelscore
-                    level++
-                } else if (score.get() < deduction) {
-                    deduction -= scoreForLevel(level - 1);
-                    level--
-                }
-            },
-            getProgress: () => {
-                return (levelscore) ? Math.min(1, Math.max(0, (score.get() - deduction) / levelscore)) : 0;
-            },
-            getScore: () => score.get(),
-            getLevel: () => { return level; },
-        };
-    })(),
-    type: 0,
-    fps: 0,
-    color: 0,
-    accel: 0,
-    party: 0,
+      },
+      update: () => {
+        levelscore = Math.ceil(1.8 * Math.pow(level + 1, 1.8) - 2 * level + 1);
+        if (score.get() - deduction >= levelscore) {
+          deduction += levelscore;
+          level += 1;
+        }
+      },
+      getProgress: () => {
+        return (levelscore) ? Math.min(1, Math.max(0, (score.get() - deduction) / levelscore)) : 0;
+      },
+      getScore: () => score.get(),
+      getLevel: () => {
+        return level;
+      },
+    };
+  })(),
+  type: 0,
+  fps: 0,
+  color: 0,
+  accel: 0,
+  topspeed: 1,
 };
 global.clearUpgrades = () => { gui.upgrades = []; };
 // The ratio finder
@@ -1105,25 +1099,24 @@ function isInView (x, y, r, mid = false) {
     return x > -r && x < global.screenWidth/ratio + r && y > -r && y < global.screenHeight/ratio + r;
 }
 function Smoothbar(value, speed, sharpness = 3) {
-    let time = Date.now();
-    let display = value;
-    let oldvalue = value;
-    return {
-        set: val => {
-            if (value !== val) {
-                oldvalue = display;
-                value = val;
-                time = Date.now();
-            }
-        },
-        get: () => {
-            let timediff = (Date.now() - time) / 1000;
-            display = (timediff < speed) ? oldvalue + (value - oldvalue) * Math.pow(timediff / speed, 1 / sharpness) : value;
-            return display;
-        },
-    };
+  let time = Date.now();
+  let display = value;
+  let oldvalue = value;
+  return {
+    set: val => {
+      if (value !== val) {
+        oldvalue = display;
+        value = val;
+        time = Date.now();
+      }
+    },
+    get: () => {
+      let timediff = (Date.now() - time) / 1000;
+      display = lerp(display, value, 0.1)
+      return display;
+    },
+  };
 }
-
 // Some stuff we need before we can set up the socket
 var sync = [];
 var clockDiff = 0;
@@ -4658,7 +4651,7 @@ const gameDrawDead = (() => {
             yy = global.screenHeight / 2 - 35 + scale * position.middle.x * 0.707;
         drawEntity(xx-190-len/2, yy-10, picture, 1.5, 1, 0.5 * scale / picture.realSize, -Math.PI/4, true);
         text.taunt.draw(
-            deathSplash, x, y - 80, 8, color.guiwhite, 'center'
+            deathSplashTip, x, y - 80, 8, color.guiwhite, 'center'
         );
         text.level.draw(
             'Level ' + gui.__s.getLevel() + ' ' + mockups[gui.type].name + '.',
