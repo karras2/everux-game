@@ -22,10 +22,6 @@ html, body {
   user-select: none;
 }
 
-#mainBody {
-  background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(117,117,255,1) 0%, rgba(0,31,255,1) 100%);
-}
-
 body {
   font-family: Ubuntu;
   font-size: 14px;
@@ -74,7 +70,7 @@ h3 {
 }
 
 .serverSelector {
-  height: 80px;
+  height: 85px;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
@@ -85,7 +81,7 @@ h3 {
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
 }
 .serverSelector tr {
-  color: #525252;
+  color: #828282;
   cursor: pointer;
 }
 .serverSelector tr.featured {
@@ -93,14 +89,21 @@ h3 {
   text-shadow: /*#ffe500 0 0 4px,*/ #fff27e 0 0 6px;
 }
 .serverSelector tr.selected {
-  color: #0800FF;
+  color: #8ABC3F;
   cursor: default;
 }
 
 .shadowScroll {
   overflow-y: scroll;
+  background:
+    /* Shadow covers */
+    linear-gradient(#dde6eb 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, 0), #dde6eb 70%) 0 100%,
+    /* Shadows */
+    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
-  background-color: white;
+  background-color: #dde6eb;
   background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
   background-attachment: local, local, scroll, scroll;
 }
@@ -153,11 +156,10 @@ input.error {
   margin: 0 auto;
   max-height: 390px;
   padding: 10px;
-  border-radius: 20px;
-  background-color: white;
+  border-radius: 5px;
+  background-color: #DDE6EB;
   box-sizing: border-box;
   overflow: hidden;
-  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.15);
 }
 .menuTabs {
   height: 26px;
@@ -409,7 +411,7 @@ body.mobile #optMobile, body.mobile #optBorders {
   position: relative;
   top: 0px;
   opacity: 1;
-  width: 100%;r
+  width: 100%;
   transition: top 500ms, opacity 500ms;
 }
 .slided .slider {
@@ -515,32 +517,33 @@ body.mobile .icon {
 }
 
 #startButton {
-  position: relative;
-  margin: auto;
+  margin: 0;
   width: 100%;
   height: 40px;
   box-sizing: border-box;
-  font-size: larger;
   color: white;
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-  background: #0800ff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.2);
+  background: #A9D86D;
   border: 0;
-  border-bottom: 2px solid #0600b8;
+  border-bottom: 2px solid #8ABC3F;
   cursor: pointer;
-  -webkit-box-shadow: inset 0 -2px #0600b8;
-  box-shadow: inset 0 -2px #0600b8;
+  box-shadow: inset 0 -2px #8ABC3F;
   border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  font: 16px Ubuntu;
+}
+#startButton:hover {
+  margin-top: 1px;
+  height: 39px;
+  border-bottom: 1px solid #8ABC3F;
 }
 
-#startButton:active,
-#startButton:hover {
-  top: 1px;
-  background: #0600b8;
+#startButton:active {
+  margin-top: 2px;
+  height: 38px;
+  background: #8ABC3F;
+  border-bottom: 0px
   outline: none;
-  -webkit-box-shadow: none;
   box-shadow: none;
 }
 
