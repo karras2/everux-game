@@ -3530,89 +3530,90 @@ const gameDraw = (() => {
         };
     }
     // Lag compensation functions
-    const compensation = /*(() => {
-        // Protected functions
-        function interpolate(p1, p2, v1, v2, tt) {
-            let k = Math.cos((1 + tt) * Math.PI);
-            return 0.5 * (((1 + tt) * v1 + p1) * (k + 1) + (-tt * v2 + p2) * (1 - k));
-        }
-        function extrapolate(p1, p2, v1, v2, tt){
-            return p2 + (p2 - p1) * tt; //v2 + 0.5 * tt * (v2 - v1) * ts
-        }
-        // Useful thing
-        function angleDifference(targetA, sourceA) {
-            let mod = (a, n) => (a % n + n) % n
-            let a = targetA - sourceA;
-            return mod(a + Math.PI, 2 * Math.PI) - Math.PI;
-        }
-        // Constructor
-        return (sinceLastUpdate = getRelative() - metrics.lastuplink, updateFreq = metrics.rendergap) => {
-            // getNow() - player.time
+	const compensation = (() => {
+		function interpolate(p1, p2, v1, v2, tt) {
+			let k = Math.cos((1 + tt) * Math.PI);
+			return .5 * (((1 + tt) * v1 + p1) * (k + 1) + (-tt * v2 + p2) * (1 - k))
+		}
 
-            // Protected vars
-            updateFreq = Math.max(updateFreq, 1000 / config.roomSpeed / 30)
-            let frameProgress = sinceLastUpdate / updateFreq
-            // Methods
-            return {
-                predict: (p1, p2, v1, v2) => {
-                    if (global.predictionMode === 0) {
-                        return p2
-                    } else if (global.predictionMode === 2) {
-                        return (frameProgress >= 1) ? extrapolate(p1, p2, v1, v2, frameProgress - 1) : interpolate(p1, p2, v1, v2, frameProgress - 1);
-                    }
-                    return frameProgress >= 1 ? p2 : p1 + (p2 - p1) * frameProgress
-                },
-                predictExtrapolate: (p1, p2, v1, v2) => {
-                    return p1 + (p2 - p1) * frameProgress
-                },
-                predictFacing: (f1, f2) => {
-                    return frameProgress >= 1 ? f2 : f1 + angleDifference(f2, f1) * frameProgress
-                },
-                getPrediction: () => frameProgress,
-            };
-        };
-    })();
-    (() => {
-        // Protected functions
-        function interpolate(p1, p2, v1, v2, ts, tt) {
-            let k = Math.cos((1 + tt) * Math.PI);
-            return 0.5 * (((1 + tt) * v1 + p1) * (k + 1) + (-tt * v2 + p2) * (1 - k));
-        }
-        function extrapolate(p1, p2, v1, v2, ts, tt){
-            return p2 + (p2 - p1) * tt; /*v2 + 0.5 * tt * (v2 - v1) * ts*/
-        }
-        // Useful thing
-        function angleDifference(sourceA, targetA) {
-            let mod = function(a, n) {
-                return (a % n + n) % n;
-            };
-            let a = targetA - sourceA;
-            return mod(a + Math.PI, 2*Math.PI) - Math.PI;
-        }
-        // Constructor
-        return (time = player.time, interval = metrics.rendergap) => {
-            // Protected vars
-            let timediff = 0, t = 0, tt = 0, ts = 0;
-            t = Math.max(getNow() - time - 80, -interval);
-            if (t > 150 && t < 1000) { t = 150; }
-            if (t > 1000) { t = 1000 * 1000 * Math.sin(t / 1000 - 1) / t + 1000; }
-            tt = t / interval;
-            ts = config.roomSpeed * 30 * t / 1000;
-            // Methods
-            return {
-                predict: (p1, p2, v1, v2) => {
-                    return (t >= 0) ? extrapolate(p1, p2, v1, v2, ts, tt) : interpolate(p1, p2, v1, v2, ts, tt);
-                },
-                predictExtrapolate: (p1, p2, v1, v2) => {
-                    return (t >= 0) ? extrapolate(p1, p2, v1, v2, ts, tt) : interpolate(p1, p2, v1, v2, ts, tt);
-                },
-                predictFacing: (f1, f2) => {
-                    return f1 + (1 + tt) * angleDifference(f1, f2);
-                },
-                getPrediction: () => { return t; },
-            };
-        };
-    })();
+		function extrapolate(p1, p2, v1, v2, tt) {
+			return p2 + (p2 - p1) * tt
+		}
+
+		function angleDifference(targetA, sourceA) {
+			let mod = (a, n) => (a % n + n) % n;
+			let a = targetA - sourceA;
+			return mod(a + Math.PI, 2 * Math.PI) - Math.PI
+		}
+		return (sinceLastUpdate = getRelative() - metrics.lastuplink, updateFreq = metrics.rendergap) => {
+			updateFreq = Math.max(updateFreq, 1e3 / config.roomSpeed / 30);
+			let frameProgress = sinceLastUpdate / updateFreq;
+			return {
+				predict: (p1, p2, v1, v2) => {
+					if (global.predictionMode === 0) {
+						return p2
+					} else if (global.predictionMode === 2) {
+						return frameProgress >= 1 ? extrapolate(p1, p2, v1, v2, frameProgress - 1) : interpolate(p1, p2, v1, v2, frameProgress - 1)
+					}
+					return frameProgress >= 1 ? p2 : p1 + (p2 - p1) * frameProgress
+				},
+				predictExtrapolate: (p1, p2, v1, v2) => {
+					return p1 + (p2 - p1) * frameProgress
+				},
+				predictFacing: (f1, f2) => {
+					return frameProgress >= 1 ? f2 : f1 + angleDifference(f2, f1) * frameProgress
+				},
+				getPrediction: () => frameProgress
+			}
+		}
+	})();
+	(() => {
+		function interpolate(p1, p2, v1, v2, ts, tt) {
+			let k = Math.cos((1 + tt) * Math.PI);
+			return .5 * (((1 + tt) * v1 + p1) * (k + 1) + (-tt * v2 + p2) * (1 - k))
+		}
+
+		function extrapolate(p1, p2, v1, v2, ts, tt) {
+			return p2 + (p2 - p1) * tt
+		}
+
+		function angleDifference(sourceA, targetA) {
+			let mod = function (a, n) {
+				return (a % n + n) % n
+			};
+			let a = targetA - sourceA;
+			return mod(a + Math.PI, 2 * Math.PI) - Math.PI
+		}
+		return (time = player.time, interval = metrics.rendergap) => {
+			let timediff = 0,
+				t = 0,
+				tt = 0,
+				ts = 0;
+			t = Math.max(getNow() - time - 80, -interval);
+			if (t > 150 && t < 1e3) {
+				t = 150
+			}
+			if (t > 1e3) {
+				t = 1e3 * 1e3 * Math.sin(t / 1e3 - 1) / t + 1e3
+			}
+			tt = t / interval;
+			ts = config.roomSpeed * 30 * t / 1e3;
+			return {
+				predict: (p1, p2, v1, v2) => {
+					return t >= 0 ? extrapolate(p1, p2, v1, v2, ts, tt) : interpolate(p1, p2, v1, v2, ts, tt)
+				},
+				predictExtrapolate: (p1, p2, v1, v2) => {
+					return t >= 0 ? extrapolate(p1, p2, v1, v2, ts, tt) : interpolate(p1, p2, v1, v2, ts, tt)
+				},
+				predictFacing: (f1, f2) => {
+					return f1 + (1 + tt) * angleDifference(f1, f2)
+				},
+				getPrediction: () => {
+					return t
+				}
+			}
+		}
+	})();
     // Make graphs
     const timingGraph = graph(),
         lagGraph = graph(),
