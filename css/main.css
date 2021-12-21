@@ -25,7 +25,7 @@ html, body {
 body {
   font-family: Ubuntu;
   font-size: 14px;
-  background-color: #484848;
+  background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(117,117,255,1) 0%, rgba(0,31,255,1) 100%);
 }
 
 hr {
@@ -95,15 +95,8 @@ h3 {
 
 .shadowScroll {
   overflow-y: scroll;
-  background:
-    /* Shadow covers */
-    linear-gradient(#dde6eb 30%, rgba(255, 255, 255, 0)),
-    linear-gradient(rgba(255, 255, 255, 0), #dde6eb 70%) 0 100%,
-    /* Shadows */
-    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
-    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
-  background-color: #dde6eb;
+  background-color: white;
   background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
   background-attachment: local, local, scroll, scroll;
 }
@@ -156,10 +149,11 @@ input.error {
   margin: 0 auto;
   max-height: 390px;
   padding: 10px;
-  border-radius: 5px;
-  background-color: #DDE6EB;
+  border-radius: 20px;
+  background-color: white;
   box-sizing: border-box;
   overflow: hidden;
+  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.15);
 }
 .menuTabs {
   height: 26px;
@@ -524,24 +518,24 @@ body.mobile .icon {
   color: white;
   text-align: center;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.2);
-  background: #A9D86D;
+  background: #0800ff;
   border: 0;
-  border-bottom: 2px solid #8ABC3F;
+  border-bottom: 2px solid #0600b8;
   cursor: pointer;
-  box-shadow: inset 0 -2px #8ABC3F;
+  box-shadow: inset 0 -2px #0600b8;
   border-radius: 5px;
   font: 16px Ubuntu;
 }
 #startButton:hover {
   margin-top: 1px;
   height: 39px;
-  border-bottom: 1px solid #8ABC3F;
+  border-bottom: 1px solid #0600b8;
 }
 
 #startButton:active {
   margin-top: 2px;
   height: 38px;
-  background: #8ABC3F;
+  background: #0600b8;
   border-bottom: 0px
   outline: none;
   box-shadow: none;
