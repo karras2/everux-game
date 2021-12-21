@@ -137,29 +137,11 @@ const global = {
     servers: [
             // Other
             {
-                id: 'z',
-                type: '0unk',
-                name: 'Private Server',
-                code: 'z-unknown',
-                at: 'private',
-                untrusted: true
-            },
-            {
-                visible: 1,
-                id: 'q',
-                type: '0unk',
-                name: 'Official Private Server',
-                code: 'z-virginia',
-                at: 'arraz-template.glitch.me',
-                untrusted: true
-            },
-            {
                 visible: 1,
                 id: 'va',
                 type: '0unk',
-                name: 'Maze FFA',
                 code: 'glitch-virginia',
-                at: 'arrax-maze.glitch.me',
+                at: 'arras2-ba.herokuapp.com',
                 secure: 1,
                 prefer: true
             },
@@ -177,7 +159,8 @@ const global = {
                 id: 'ba',
                 type: '0unk',
                 code: 'glitch-virginia',
-                at: 'arrax-mot2.glitch.me',
+                at: '',
+                featured: 1,
                 secure: 1,
                 prefer: false
             }
