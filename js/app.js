@@ -4366,7 +4366,7 @@ if ( text.name === 'Mega Lord Poseidon') {
                    (global.canUpgrade && spacing * 2 + gui.upgrades.length * (alcoveSize * 0.5 + 14) > x * 1.4 ? alcoveSize / 2 / 1.4 * upgradeMenu.get() : 0)
             if (lb.data.length > 0)
                 text.lbtitle.draw(
-                    'Leaderboard (tryhards)', Math.round(x + len / 2) + 0.5,
+                    'Leaderboard', Math.round(x + len / 2) + 0.5,
                     Math.round(y - 10) + 0.5,
                     height + 4, color.guiwhite, 'center'
                 );
