@@ -22,6 +22,10 @@ html, body {
   user-select: none;
 }
 
+#mainBody {
+  background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(117,117,255,1) 0%, rgba(0,31,255,1) 100%);
+}
+
 body {
   font-family: Ubuntu;
   font-size: 14px;
@@ -156,10 +160,11 @@ input.error {
   margin: 0 auto;
   max-height: 390px;
   padding: 10px;
-  border-radius: 5px;
-  background-color: #DDE6EB;
+  border-radius: 20px;
+  background-color: white;
   box-sizing: border-box;
   overflow: hidden;
+  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.15);
 }
 .menuTabs {
   height: 26px;
