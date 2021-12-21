@@ -81,7 +81,7 @@ h3 {
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
 }
 .serverSelector tr {
-  color: #828282;
+  color: #525252;
   cursor: pointer;
 }
 .serverSelector tr.featured {
@@ -89,7 +89,7 @@ h3 {
   text-shadow: /*#ffe500 0 0 4px,*/ #fff27e 0 0 6px;
 }
 .serverSelector tr.selected {
-  color: #8ABC3F;
+  color: #0800FF;
   cursor: default;
 }
 
