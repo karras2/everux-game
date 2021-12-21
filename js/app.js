@@ -15,6 +15,12 @@ const camera = {
   vy: 0,
 }
 
+let amongUs = new Image()
+amongUs.src = '1639967759218.png'
+
+var gradientrandomizer = Math.floor(Math.random() * 75);
+var tankMenuScheme = [ "#fe0e00", "#ff1c00", "#ff2a00", "#ff3800", "#ff4600", "#ff5500", "#ff6300", "#ff7100", "#ff7f00", "#ff8d00", "#ff9b00", "#ffaa00", "#ffb800", "#ffc600", "#ffd400", "#ffe200", "#fff000", "#ffff00", "#f0fe00", "#e2ff00", "#d4ff00", "#c6ff00", "#b8ff00", "#aaff00", "#9bff00", "#8dff00", "#7fff00", "#71ff00", "#63ff00", "#54ff00", "#46ff00", "#38ff00", "#2aff00", "#1cff00", "#0eff00", "#00ff00", "#00ff0f", "#00ff20", "#00ff33", "#00ff48", "#00ff61", "#00ff80", "#00ffa3", "#00ffcc", "#00ffff", "#00ccff", "#00a3ff", "#007eff", "#0866ff", "#0048ff", "#0033ff", "#0020ff", "#000fff", "#0000ff", "#0e00fe", "#1c00ff", "#2a00ff", "#3800ff", "#4600ff", "#5500ff", "#6300ff", "#7100ff", "#7f00ff", "#8d00ff", "#9b00ff", "#aa00ff", "#b800ff", "#c600ff", "#d400ff", "#e200ff", "#f000ff", "#ff00ff", "#fe00f0", "#ff00e2", "#ff00d4", "#ff00c6", "#ff00b8", "#ff00aa", "#ff009b", "#ff008d", "#ff007f", "#ff0071", "#ff0063", "#ff0054", "#ff0046", "#ff0038", "#ff002a", "#ff001c", "#ff000e", "#ff0000", "#fe0e00", "#ff1c00", "#ff2a00", "#ff3800", "#ff4600", "#ff5500", "#ff6300", "#ff7100", "#ff7f00", "#ff8d00", "#ff9b00", "#ffaa00", "#ffb800", "#ffc600", "#ffd400", "#ffe200", "#fff000", "#ffff00", "#f0fe00", "#e2ff00", "#d4ff00", "#c6ff00", "#b8ff00", "#aaff00", "#9bff00", "#8dff00", "#7fff00", "#71ff00", "#63ff00", "#54ff00", "#46ff00", "#38ff00", "#2aff00", "#1cff00", "#0eff00", "#00ff00", "#00ff0f", "#00ff20", "#00ff33", "#00ff48", "#00ff61", "#00ff80", "#00ffa3", "#00ffcc", "#00ffff", "#00ccff", "#00a3ff", "#007eff", "#0061ff", "#0048ff", "#0033ff", "#001eff", "#000dff", "#0000ff", "#0e00fe", "#1c00ff", "#2a00ff", "#3800ff", "#4600ff", "#5500ff", "#6300ff", "#7100ff", "#7f00ff", "#8d00ff", "#9b00ff", "#aa00ff", "#b800ff", "#c600ff", "#d400ff", "#e200ff", "#f000ff", "#ff00ff", "#fe00f0", "#ff00e2", "#ff00d4", "#ff00c6", "#ff00b8", "#ff00aa", "#ff009b", "#ff008d", "#ff007f", "#ff0071", "#ff0063", "#ff0054", "#ff0046", "#ff0038", "#ff002a", "#ff001c", "#ff000e", "#ff0000" ];
+
 // Fundamental requires <3
 import { Canvas } from './canvas.js';
 import { protocol } from './lib/fasttalk.js';
@@ -2325,6 +2331,31 @@ function drawGuiRect(x, y, length, height, stroke = false) {
     }
 }
 
+function drawGuiRoundRect(x, y, w, h, r, stroke = !1, cornerArray = [!0, !0, !0, !0]) {
+	if (w < 2 * r) r = w / 2;
+	if (h < 2 * r) r = h / 2;
+	ctx.beginPath();
+	ctx.moveTo(x + r, y);
+	ctx.arcTo(x + w, y, x + w, y + h, cornerArray[0] ? r : 0);
+	ctx.arcTo(x + w, y + h, x, y + h, cornerArray[1] ? r : 0);
+	ctx.arcTo(x, y + h, x, y, cornerArray[2] ? r : 0);
+	ctx.arcTo(x, y, x + w, y, cornerArray[3] ? r : 0);
+	ctx.closePath();
+	stroke ? ctx.stroke() : ctx.fill()
+}
+CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+	if (w < 2 * r) r = w / 2;
+	if (h < 2 * r) r = h / 2;
+	this.beginPath();
+	this.moveTo(x + r, y);
+	this.arcTo(x + w, y, x + w, y + h, r);
+	this.arcTo(x + w, y + h, x, y + h, r);
+	this.arcTo(x, y + h, x, y, r);
+	this.arcTo(x, y, x + w, y, r);
+	this.closePath();
+	return this
+};
+
 function drawGuiCircle(x, y, radius, stroke = false) {
     ctx.beginPath()
     ctx.arc(x, y, radius, 0, Math.PI * 2, false)
@@ -4388,14 +4419,14 @@ if ( text.name === 'Mega Lord Poseidon') {
                     global.clickables.upgrade.place(i++, x * screenRatio, y * screenRatio, width * screenRatio, height * screenRatio);
                     // Draw box
                     ctx.globalAlpha = 0.5;
-                    ctx.fillStyle = getColor(colorIndex + 10);
-                    drawGuiRect(x, y, width, height);
+                    ctx.fillStyle = tankMenuScheme[colorIndex + gradientrandomizer];
+                    drawGuiRoundRect(x, y, width, height, 25);
                     ctx.globalAlpha = 0.1;
-                    ctx.fillStyle = getColor(colorIndex);
+                    ctx.fillStyle = tankMenuScheme[colorIndex + gradientrandomizer];
                     colorIndex++;
-                    drawGuiRect(x, y, width, height*0.6);
+                    drawGuiRoundRect(x, y, width, height*0.6, 25);
                     ctx.fillStyle = color.black;
-                    drawGuiRect(x, y+height*0.6, width, height*0.4);
+                    drawGuiRoundRect(x, y+height*0.6, width, height*0.4, 25);
                     ctx.globalAlpha = 1;
                     // Find offset location with rotation
                     let picture = getEntityImageFromMockup(model, gui.color),
@@ -4427,7 +4458,7 @@ if ( text.name === 'Mega Lord Poseidon') {
                     ctx.strokeStyle = color.black;
                     ctx.globalAlpha = 1;
                     ctx.lineWidth = 3;
-                    drawGuiRect(x, y, width, height, true); // Border
+                    drawGuiRoundRect(x, y, width, height, 25, true); // Border
                     if (++ticker % 9 === 0 && !global.mobile) {
                         x = xStart;
                         y += height + internalSpacing;
@@ -4834,158 +4865,84 @@ function animloop() {
     }
 }
 
- let snowAmount = 0
+
+let snowAmount = 1;
 let aeff = 1;
-    let cool = 0;
+let cool = 0;
 let counter = 0;
 let counter2 = 0;
 if (snowAmount) {
-  let snowCanvas = document.createElement('canvas')
-  snowCanvas.style.position = 'absolute'
-  snowCanvas.style.top = '0'
-  document.body.insertBefore(snowCanvas, document.body.firstChild)
- 
-  let ctx = snowCanvas.getContext('2d')
-  let snow = []
+  let snowCanvas = document.createElement("canvas");
+  snowCanvas.style.position = "absolute";
+  snowCanvas.style.top = "0";
+  document.body.insertBefore(snowCanvas, document.body.firstChild);
+
+  let ctx = snowCanvas.getContext("2d");
+  let snow = [];
   let updateSnow = () => {
-    if (snowCanvas.width !== window.innerWidth) snowCanvas.width = window.innerWidth
-    if (snowCanvas.height !== window.innerHeight) snowCanvas.height = window.innerHeight
-    ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height)
+    if (snowCanvas.width !== window.innerWidth)
+      snowCanvas.width = window.innerWidth;
+    if (snowCanvas.height !== window.innerHeight)
+      snowCanvas.height = window.innerHeight;
+    ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
     for (let p of snow) {
-      p.vel2++
-      p.x += p.vel*Math.cos(p.dir)
-      p.y += p.vel*Math.sin(p.dir)
-      let a = Math.min(1, 1 - (p.y / snowCanvas.height)) * 2
+      p.vel2++;
+      p.x += p.vel * Math.cos(p.dir);
+      p.y += p.vel * Math.sin(p.dir);
+      let a = Math.min(1, 1 - p.y / snowCanvas.height) * 2;
       if (a > 0) {
-        ctx.globalAlpha = a
-                for(let i = 0; i < 12; i++)
-        {
-        ctx.beginPath()
-        ctx.arc(p.x+(-2+i)*p.vel*Math.cos(p.dir), p.y+(-2+i)*p.vel*Math.sin(p.dir), p.r, 0, 2 * Math.PI)
-         if(i == 11) ctx.fillStyle = '#0000FF';
-         if(i == 10) ctx.fillStyle = '#0000FF';
-          if(i == 9) ctx.fillStyle = '#0000FF';
-          if(i == 8) ctx.fillStyle = '#0000FF';
-          if(i == 7) ctx.fillStyle = '#0000FF';
-          if(i == 6) ctx.fillStyle = '#0000FF';
-          if(i == 5) ctx.fillStyle = '#0000FF';
-          if(i == 4) ctx.fillStyle = '#0000FF';
-          if(i == 3) ctx.fillStyle = '#0000FF';
-          if(i == 2) ctx.fillStyle = '#0000FF';
-          if(i == 1) ctx.fillStyle = '#0000FF';
-          if(i == 0) ctx.fillStyle = '#0000FF';
-        ctx.fill()
-                  }
-      } else if(p.x < 20 || p.x > window.innerWidth+20 || p.y <-25 || a<0 || global.gameStart){
-        p.gone = true
-        //snow.splice(snow.indexOf(p), 1); 
+        ctx.globalAlpha = a;
+        let s = p.type
+        ctx.beginPath();
+        ctx.arc(p.x + (-2) * p.vel * Math.cos(p.dir), p.y + (-2) * p.vel * Math.sin(p.dir), p.r, 0, 2 * Math.PI);
+        ctx.fillStyle = "#ffffff";
+        ctx.lineWidth = p.r / 5;
+        ctx.fill();
+      } else if (
+        p.x < 20 ||
+        p.x > window.innerWidth + 20 ||
+        p.y < -25 ||
+        a < 0 ||
+        global.gameStart
+      ) {
+        p.gone = true;
       }
     }
     if (snowAmount > Math.random()) {
-          if(!global.gameStart)
-      {
-                                    let aeef = -10
-                                  let aee = (snowCanvas.width)*(1-2*Math.random())
-                                  if(counter % 43) counter2++
-            counter++;
-      cool+=aeff;
-      if(counter % 1440 == 0) aeff *= -1
-      if(counter % 1 == 0)
-      {
-      for(let i = 0; i < 360; i+= 360/1)
-      {
-      let x = snowCanvas.width/2+aee;
-      let r = 5
-      let dir = Math.PI/2+10*(1-2*Math.random())*Math.PI/180+30*Math.sin(0.3*counter*Math.PI/180)*Math.PI/180;
-        let vel = 5+7*Math.random();
-        let color = '#0fa'
-      snow.push({ x, y: aeef, r, dir, vel, color})
+      if (!global.gameStart) {
+        let aeef = -1;
+        let aee = snowCanvas.width * (1 - 2 * Math.random());
+        if (counter % 43) counter2++;
+        counter++;
+        cool += aeff;
+        if (counter % 1440 == 0) aeff *= -1;
+        if (counter % 1 == 0 && Math.random() > 0.9) {
+          for (let i = 0; i < 360; i += 360 / 1) {
+            let x = snowCanvas.width / 2 + aee;
+            let r = 5 + Math.floor(Math.random() * 10);
+            let dir =
+              Math.PI / 2 +
+              (10 * (1 - 2 * Math.random()) * Math.PI) / 180 +
+              (30 * Math.sin((0.3 * counter * Math.PI) / 180) * Math.PI) / 180;
+            let vel = 5 + 7 * Math.random();
+            let color = "#0fa";
+            snow.push({
+              x,
+              y: aeef,
+              r,
+              dir,
+              vel,
+              color
+            });
+          }
+        }
       }
-      }
-          
     }
-    }
-    if (global.gameStart)
-      snowCanvas.remove()
-    else
-      requestAnimationFrame(updateSnow)
-  }
+    if (global.gameStart) snowCanvas.remove();
+    else requestAnimationFrame(updateSnow);
+  };
   setInterval(() => {
-    snow = snow.filter(r => !r.gone)
-  }, 2000)
-  updateSnow()
+    snow = snow.filter(r => !r.gone);
+  }, 2000);
+  updateSnow();
 }
- let newsnow = 0
-let aefff = 1;
-    let cooll = 0;
-let counter1 = 0;
-let counter3 = 0;
-if (newsnow) {
-  let snowCanvas = document.createElement('canvas')
-  snowCanvas.style.position = 'absolute'
-  snowCanvas.style.top = '0'
-  document.body.insertBefore(snowCanvas, document.body.firstChild)
- 
-  let ctx = snowCanvas.getContext('2d')
-  let snow = []
-  let updateSnow = () => {
-    if (snowCanvas.width !== window.innerWidth) snowCanvas.width = window.innerWidth
-    if (snowCanvas.height !== window.innerHeight) snowCanvas.height = window.innerHeight
-    ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height)
-    for (let p of snow) {
-      p.vel2++
-      p.x += p.vel*Math.cos(p.dir)
-      p.y += p.vel*Math.sin(p.dir)
-      let a = Math.min(1, 1 - (p.y / snowCanvas.height)) * 2
-      if (a > 0) {
-        ctx.globalAlpha = a
-                for(let i = 0; i < 3; i++)
-        {
-        ctx.beginPath()
-        ctx.arc(p.x+(-2+i)*p.vel*Math.cos(p.dir), p.y+(-2+i)*p.vel*Math.sin(p.dir), p.r, 0, 2 * Math.PI)
-      
-          if(i == 2) ctx.fillStyle = '#ffffff';
-          if(i == 1) ctx.fillStyle = '#c5a8ff';
-          if(i == 0) ctx.fillStyle = '#5f0fff';
-        ctx.fill()
-                  }
-      } else if(p.x < 20 || p.x > window.innerWidth+20 || p.y <-25 || a<0 || global.gameStart){
-        p.gone = true
-        //snow.splice(snow.indexOf(p), 1); 
-      }
-    }
-    if (newsnow > Math.random()) {
-          if(!global.gameStart)
-      {
-                                    let aeeff = -10
-                                  let aee = (snowCanvas.width)*(1-2*Math.random())
-                                  if(counter1 % 43) counter3++
-            counter++;
-      cool+=aeff;
-      if(counter1 % 1440 == 0) aeff *= -1
-      if(counter1 % 1 == 0)
-      {
-      for(let i = 0; i < 360; i+= 360/1)
-      {
-      let x = snowCanvas.width/2+aee;
-      let r = 5
-      let dir = Math.PI/2+10*(1-2*Math.random())*Math.PI/180+30*Math.sin(0.3*counter*Math.PI/180)*Math.PI/180;
-        let vel = 5+7*Math.random();
-        let color = '#0fa'
-      snow.push({ x, y: aeeff, r, dir, vel, color})
-      }
-      }
-          
-    }
-    }
-    if (global.gameStart)
-      snowCanvas.remove()
-    else
-      requestAnimationFrame(updateSnow)
-  }
-  setInterval(() => {
-    snow = snow.filter(r => !r.gone)
-  }, 2000)
-  updateSnow()
-}
-
