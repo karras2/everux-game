@@ -164,16 +164,8 @@
             <button id="startButton" tabindex="2">Play</button>
           </div>
         </div>
-        <div class="startMenuHolder shrinkable">
-          <div class="changelogSelector" id="changelogSelector">
-            <span data-type="updates" class="active" title="All major updates">Updates</span>
-            <span data-type="events" title="Major updates involving events or gamemodes">Events &amp; Gamemodes</span>
-            <span data-type="balances" title="Every balance update, major or minor">Balance</span>
-            <span data-type="changelog" title="Every single update">Changelog</span>
-            <iframe id="patchNotesIFrame" src="changelog.html" seamless='seamless' height="300" frameBorder="1">Patch notes go here!</iframe>
-            <!-- <iframe id="patchNotesIFrame" src="privateinfo.html" seamless='seamless' frameBorder="1">Patch notes go here!</iframe>--->
-          </div>
-          <div id="patchNotes" class="updates"></div>
+        <div class="startMenuHolder" allowtransparency="true">
+          <iframe id="patchNotesIFrame" src="changelog.html" seamless='seamless' frameBorder="0">Patch notes go here!</iframe>
         </div>
       </div>
     </div>
