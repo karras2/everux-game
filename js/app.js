@@ -4460,14 +4460,14 @@ if ( text.name === 'Mega Lord Poseidon') {
                     ctx.lineWidth = 3;
                     drawGuiRoundRect(x, y, width, height, 25, true); // Border
                     if (++ticker % 9 === 0 && !global.mobile) {
-                        x = xStart;
-                        y += height + internalSpacing;
+                        y = xStart;
+                        x += height + internalSpacing;
                     } else {
-                        x += glide * (width + internalSpacing);
+                        y += glide * (width + internalSpacing);
                     }
                 });
                 // Draw box
-                let h = 14, msg = "Don't Upgrade", m = measureText(msg, h-3) + 10;
+                let h = 14, msg = "Ignore", m = measureText(msg, h-3) + 10;
                 let xx = (xLast + width + internalSpacing + xStart - 15)/2, yy = yMax + height + internalSpacing;
                 drawBar(xx-m/2, xx+m/2, yy+h/2, h+config.graphical.barChunk, color.black);
                 drawBar(xx-m/2, xx+m/2, yy+h/2, h, color.white);
