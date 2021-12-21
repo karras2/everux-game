@@ -437,77 +437,16 @@ body.mobile .icon {
   width: 90px;
   height: 90px;
 }
+#patchNotesIFrame {
+    width: 350px;
+    height: 355px;
+}
 
 #patchNotes {
-  max-width: 330px;
-  height: calc(100% - 40px);
-  padding: 5px 10px 10px;
-  overflow: hidden auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
-}
-
-#patchNotes ul {
-  padding-left: 15px;
-  margin-left: 10px;
-}
-
-#patchNotes table.poll-list {
-  margin: 8px 0px 20px 5px;
-}
-#patchNotes table.poll-table {
-  text-align: center;
-  margin: 0 0 12px;
-}
-#patchNotes table.poll-table thead {
-  font-weight: bold;
-}
-#patchNotes b small {
-  color: #444;
-}
-#patchNotes b small a {
-  margin-left: 10px;
-}
-
-#patchNotes div {
-  transition: max-height 500ms, opacity 500ms, line-height 500ms;
-  max-height: 1500px;
-  opacity: 1;
-  margin-bottom: 0;
-  line-height: 1.2;
-}
-#patchNotes div hr {
-  transition: margin 500ms;
-}
-#patchNotes.updates .balance,
-#patchNotes.updates .patch,
-#patchNotes.events .update,
-#patchNotes.events .poll,
-#patchNotes.events .balance-update,
-#patchNotes.events .balance,
-#patchNotes.events .patch,
-#patchNotes.balances .update,
-#patchNotes.balances .poll,
-#patchNotes.balances .event-poll,
-#patchNotes.balances .event,
-#patchNotes.balances .patch {
-  max-height: 0px;
-  opacity: 0;
-  line-height: 0;
-}
-#patchNotes.updates .balance hr,
-#patchNotes.updates .patch hr,
-#patchNotes.events .update hr,
-#patchNotes.events .poll hr,
-#patchNotes.events .balance-update hr,
-#patchNotes.events .balance hr,
-#patchNotes.events .patch hr,
-#patchNotes.balances .update hr,
-#patchNotes.balances .poll hr,
-#patchNotes.balances .event-poll hr,
-#patchNotes.balances .event hr,
-#patchNotes.balances .patch hr {
-  margin: 0;
+    padding: 10px;
+    width: 90%;
+    height: 100%;
+    overflow: auto;
 }
 
 #startButton {
