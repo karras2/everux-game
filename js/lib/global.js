@@ -167,9 +167,8 @@ const global = {
                 visible: 0,
                 id: 'wa',
                 type: '0unk',
-                name: 'Portal 2TDM',
                 code: 'glitch-virginia',
-                at: 'arrax-2tdmmaze.glitch.me',
+                at: 'arras2.herokuapp.com',
                 secure: 1,
                 prefer: false
             },
@@ -177,7 +176,6 @@ const global = {
                 visible: 0,
                 id: 'ba',
                 type: '0unk',
-                name: 'Maze Mothership',
                 code: 'glitch-virginia',
                 at: 'arrax-mot2.glitch.me',
                 secure: 1,
