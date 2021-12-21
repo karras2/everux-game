@@ -1,207 +1,240 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" id="mainBody">
-<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
-
-<style type="text/css">
-  body {
-    overflow: hidden;
-  }
-</style>
-
 <head>
   <!-- Meta Properties -->
-  <meta charset="UTF-8">
-  <title>arras.io beta</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Diep.io 3 is finnaly here!!! Many new bosses, tanks, and modes- we aim to please!">
+  <meta name="robots" content="index, follow">
+  <meta property="og:image:width" content="54">
+  <meta property="og:image:height" content="54">
+  <title>Arraz.io</title>
   <!-- CSS -->
-  <link rel="stylesheet" href="/main.css" />
-  <!-- Version Control -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
   <script>
-    var VERSION = localStorage.getItem('versionHash');
-    (function versionControl() {
-      let request = new XMLHttpRequest();
-      let url = window.location.href + "/api/vhash";
-      console.log("Checking version...");
-      return new Promise((resolve, reject) => {
-        request.open('GET', url);
-        request.onload = () => {
-          resolve(request.response);
-          console.log('Version check successful.');
-        };
-        request.onerror = () => {
-          reject(request.statusText);
-          console.log('Version check failed.');
-          console.log(request.statusText);
-        };
-        request.send();
-      });
-    })().then(function resolveVersion(data) {
-      localStorage.setItem('versionHash', data);
-      if (VERSION !== data) {
-        console.log("Updating!");
-        localStorage.setItem('updated', 'datgudshit');
-        location.reload(true);
-      }
-    });
+  var aiptag = aiptag || {};
+  aiptag.cmd = aiptag.cmd || [];
+  aiptag.cmd.display = aiptag.cmd.display || [];  aiptag.cmd.player = aiptag.cmd.player || [];
+  aiptag.gdprShowConsentTool = true;
   </script>
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="96x96" href="https://raw.githubusercontent.com/nepphhh/arrasio/master/arrasio/src/client/favicons/favicon.ico">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="manifest" href="/favicon/manifest.json">
+  <meta name="theme-color" content="#8abc3f">
+  <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="192x192"  href="https://cdn.glitch.com/19a9b9a7-a78e-4566-912d-77e7fce134d1%2FArraz.io%20profile%202.PNG?v=1562540773185">
+ 
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="https://cdn.glitch.com/19a9b9a7-a78e-4566-912d-77e7fce134d1%2FArraz.io%20profile%202.PNG?v=1562540773185">
+    <meta name="theme-color" content="#ffffff">
 </head>
-
+<!-- https://discordapp.com/oauth2/authorize?client_id=427927499071160320&redirect_uri=http%3A%2F%2Farras.io%2Fcallback&response_type=code&scope=identify%20email -->
 <body oncontextmenu="return false;" id="mainBody">
   <div id="gameAreaWrapper">
     <canvas id="gameCanvas" tabindex="1" id="cvs" tabindex="1"></canvas>
+    <div id="respawn-banner" class="respawn-banner"><div id="arras-io_728x90"></div></div>
   </div>
   <div id="mainWrapper">
     <div id="startMenuWrapper">
       <div id="startMenu">
+        <div id="linkHolder" class="startMenuHolder">
+          <div id="bottomHolder">
+            <!--<a style="background:#E0D571" href="https://discord.gg/k8ZFMUz">Dev Discord</a>-->
+          <iframe src="https://discordapp.com/widget?id=514641239828594698&theme=dark" width="350" height="250" allowtransparency="true" frameborder="0"></iframe>
+             Some links:
+                      
+            <a style="background:#7289DA" href="https://discord.gg/sG4Bj26">Discord</a>
+            <a style="background:#F74501" href="https://www.reddit.com/r/Diep2io/">Reddit</a>
+            <a style="background:#F71701" href="https://www.youtube.com/channel/UCNm0bTgUk_JsyErGP2YQ8-w">YouTube</a>
+          <!--  <a style="background:#FA7664" href="https://www.patreon.com/arras">Patreon</a> --->
+            <a style="background:#CEB58F" href="https://docs.google.com/spreadsheets/d/15D_DTLCmNjgArilZXby-tiKikYp5Y8xv5zPN1sLtnq8/edit?usp=sharing">World Records</a>
+          </div>
+        </div>
         <div class="startMenuHolder">
           <div class="sliderHolder">
-            <div class="slider startMenuSlidingContent">
-              <center><img src="EveruxIcon.png" class="icon" /></center>
-              <h1>evreux.io</h1>
-                         <div class="serverSelector shadowScroll">
-             <h4><a href="https://arras2.herokuapp.com">US East | Heroku | Defender</a></h4>
-             <h4>US West | Heroku | Main</h4>
-              </div>
-              <input type="text" autofocus tabindex="1" spellcheck="false" placeholder="This is the tale of:" id="playerNameInput" maxlength="24" />
-           </div>
+            <div class="slider" id="startMenuSlidingContent">
+              <center><img src= "https://cdn.glitch.com/19a9b9a7-a78e-4566-912d-77e7fce134d1%2FArraz.io%20profile%202.PNG?v=1562540773185">
+              <h1>Arraz.io</h1>
+              <div class="serverSelector shadowScroll"><table><tbody id="serverSelector"></tbody></table></div>
+              <input type="text" autofocus tabindex="1" spellcheck="false" placeholder="This is the tale of" id="playerNameInput" maxlength="24">
+               <input type="text" class="conceal" tabindex="3" placeholder="Token not required. For Beta Testers only." id="playerKeyInput" maxlength="64" />  
+                       
+           <!-- <audio id="ListenLive" controls loop>
+  <source src="https://cdn.glitch.com/19a9b9a7-a78e-4566-912d-77e7fce134d1%2FMerry%20Go.mp3?v=1559825622094">
+  <source src="https://cdn.glitch.com/19a9b9a7-a78e-4566-912d-77e7fce134d1%2FScheming%20Weasel%20faster.mp3">
+  Your browser does not support the audio element.
+</audio>--->
+            </div>
+           
             <div class="slider" id="startMenuSlidingTrigger">
-              <h3 class="nopadding">View Options/help 🡲</h3>
+              <h3 class="nopadding">
+                <span id="viewOptionText">view options</span>&nbsp;&nbsp;<i class="arrow" id="optionArrow" style="transform:rotate(-45deg);-webkit-transform:rotate(-45deg)"></i>
+              </h3>
             </div>
             <div class="slider" id="startMenuSlidingContent">
-              <br>
-              <optionsHeader>Advanced Controls:</optionsHeader><br>
-              <table>
-                <tr>
-                  <td><b>E</b>: Auto-fire</td>
-                  <td><b>C</b>: Auto-spin</td>
-                </tr>
-                <tr>
-                  <td><b>R</b> - Override</td>
-                  <td><b>N</b>: Level Up</td>
-                </tr>
-                <tr>
-                  <td><b>Y</b> - Tongle Class Tree</td>
-                  <td><b>L</b> - Open Debug Info</td>
-                </tr>
-                <tr>
-                  <td><b>T</b> - Teleport</td>
-                  <td><b>`</b> - Tongle TESTBED</td>
-                </tr>
+              <div class="controlTable optionsHeader">Advanced Controls <i id="resetControls" class="reset resetControls" title="Reset controls"></i><i id="moreControls" class="moreControls cross" title="More controls"></i></div>
+              <table class="controlTable" id="controlTable">
+                <tbody>
+                  <tr>
+                    <td><div><b data-key="KEY_AUTO_FIRE">E</b><span> - </span>auto-fire</div></td>
+                    <td><div><b data-key="KEY_AUTO_SPIN">C</b><span> - </span>auto-spin</div></td>
+                    <td><div><b data-key="KEY_OVER_RIDE">R</b><span> - </span>disable AI</div></td>
+                  </tr>
+                  <tr>
+                    <td><div><b data-key="KEY_LEVEL_UP">N</b><span> - </span>level up</div></td>
+                    <td><div><b data-key="KEY_REVERSE_TANK">V</b><span> - </span>reverse tank</div></td>
+                    <td><div><b data-key="KEY_REVERSE_MOUSE">B</b><span> - </span>reverse mouse</div></td>
+                  </tr>
+                  <tr>
+                    <td><div><b data-key="KEY_SCREENSHOT">Q</b><span> - </span>screenshot</div></td>
+                    <td><div><b data-key="KEY_UPGRADE_MAX">M</b><span> - </span>maximize stat</div></td>
+                    <td><div><b data-key="KEY_CLASS_TREE">T</b><span> - </span>show class tree</div></td>
+                  </tr>
+                  <tr>
+                    <td><div><b data-key="KEY_RECORD">Z</b><span> - </span>record video</div></td>
+                    
+                    <td><div><b data-key="KEY_PING">L</b><span> - </span>show latency</div></td>
+                  </tr>
+                  
+                 
+                   
+                </tbody>
               </table>
-              <optionsHeader>Options:</optionsHeader>
+              <div class="optionsHeader">Options</div>
               <select id="optColors" tabindex="-1">
-                <option value="normal">Light Colors</option>
-                <option value="dark">Dark Colors</option>
-                <option value="natural">Natural</option>
-                <option value="classic">Classic</option>
-                <option value="forest">Forest</option>
-                <option value="midnight">Midnight</option>
-                <option value="pastel">Snow</option>
-                <option value="ocean">Coral Reef (Fan-made)</option>
-                <option value="badlands">Badlands (Fan-made)</option>
-                <option value="bleach">Bleach (Fan-made)</option>
-                <option value="nitro">Nitro (Fan-made)</option>
+                                <option value="normal">Light Colors</option>
+                                <option value="dark">Dark Colors</option>
+                                <option value="natural">Natural</option>
+                                <option value="classic">Classic</option>
+                                <option value="forest">Forest (Fan-made)</option>
+                                <option value="midnight">Borderless</option>
+                                <option value="pastel">Snow (Fan-made)</option>
+                                <option value="ocean">Coral Reef (Fan-made)</option>
+                                <option value="badlands">Badlands (Fan-made)</option>
+                                <option value="bleach">Bleach (Fan-made)</option>
+                              <option value="nebula">Nebula (Fan-made)</option>
+                              <option value="space">Space (Fan-made)</option>
+                            </select>
+              <select id="optMobile" tabindex="-1">
+                <option value="joysticks">Joysticks</option>
+                <option value="desktop">Desktop</option>
               </select>
               <select id="optBorders" tabindex="-1">
-                <option value="normal">Soft Borders</option>
-                <option value="dark">Dark Borders</option>
-                <option value="neon">Neon Mode</option>
-                <option value="glass">Glass Mode</option>
-              </select>
+                                <option value="normal">Soft Borders</option>
+                                <option value="dark">Dark Borders</option>
+                                <option value="neon">Neon Mode</option>
+                                <option value="glass">Glass Mode</option>
+                                <option value="???">New</option>
+                            </select>
+              <input id="optCustom" style="display:none" placeholder="Enter your theme code here"></input>
               <table>
                 <tr>
-                  <td>
-                    <div>
-                      <label><input id="optScreenshotMode" tabindex="-1" class="checkbox" type="checkbox"> Screenshot Mode</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div>
-                      <label><input id="optNoPointy" tabindex="-1" class="checkbox" type="checkbox"> Classic Traps</label>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div>
-                      <label><input id="optFancy" tabindex="-1" class="checkbox" type="checkbox"> Low Graphics</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div>
-                      <label><input id="optPredictive" tabindex="-1" class="checkbox" type="checkbox"> Disable Hyperactivity</label>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div>
-                      <label><input id="optMiterText" tabindex="-1" class="checkbox" type="checkbox"> Sharp Text</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div>
-                      <label><input id="optMiter" tabindex="-1" class="checkbox" type="checkbox"> Sharp Edges</label>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
+                  <td><div>
+                    <label class="container"><input id="optScreenshotMode" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Screenshot Mode</label>
+                  </div></td>
+                  <td><div>
+                    <label class="container"><input id="optNoPointy" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Classic Traps</label>
+                  </div></td>
+                </tr><tr>
+                  <td><div>
+                    <label class="container"><input id="optFancy" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Low Graphics</label>
+                  </div></td>
+                  <td><div>
+                    <label class="container"><input id="optShield" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Separate Shield Bar</label>
+                  </div></td>
+                </tr><tr>
                 </tr>
               </table>
-              <input type="text" class="conceal" tabindex="3" placeholder="Token (Not required, can be left blank)" id="playerKeyInput" maxlength="64" />
+              <div class="optionsHeader">More Links</div>
+              <center>
+                <a tabindex="-1" href="https://glitch.com/edit/#!/arraz-template?path=README.md">Private Server Template</a>
+                <br>
+                <a tabindex="-1" href="/custom-shape">Custom Shape Builder</a>
+                <br>
+                <a tabindex="-1" href="https://codepen.io/road-to-100k/full/MPyOeQ/">Road's Custom Theme Maker</a>
+                <br>
+                <a tabindex="-1" href="http://arras-proxy.surge.sh/">Proxy Server</a>
+                &nbsp;&nbsp;&nbsp;
+                <a tabindex="-1" href="https://arras-lb.glitch.me/donate">Donate via Stripe</a>
+              </center>
             </div>
           </div>
           <div style="position: relative; bottom: -10px;">
             <button id="startButton" tabindex="2">Play</button>
           </div>
         </div>
-        <div class="startMenuHolder" allowtransparency="true">
-          <iframe id="patchNotesIFrame" src="changelog.html" seamless='seamless' frameBorder="0">Patch notes go here!</iframe>
+        <div class="startMenuHolder shrinkable">
+          <div class="changelogSelector" id="changelogSelector">
+            <span data-type="updates" class="active" title="All major updates">Updates</span>
+            <span data-type="events" title="Major updates involving events or gamemodes">Events &amp; Gamemodes</span>
+            <span data-type="balances" title="Every balance update, major or minor">Balance</span>
+            <span data-type="changelog" title="Every single update">Changelog</span>
+            <iframe id="patchNotesIFrame" src="changelog.html" seamless='seamless' height="300" frameBorder="1">Patch notes go here!</iframe>
+            <!-- <iframe id="patchNotesIFrame" src="privateinfo.html" seamless='seamless' frameBorder="1">Patch notes go here!</iframe>--->
+          </div>
+          <div id="patchNotes" class="updates"></div>
         </div>
       </div>
     </div>
   </div>
   <!-- JS -->
-  <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script src="/app.js"></script>
   <script>
-    var clicked = true;
-    $("#startMenuSlidingTrigger").on('click', function() {
+  aiptag.cmd.display.push(function() { aipDisplayTag.display('arras-io_336x280'); });
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(registration => console.log('Service Worker Registered'))
+  }
+  (function() {
+    var clicked = 0
+    var trigger = document.getElementById('startMenuSlidingTrigger')
+    var optionArrow = document.getElementById('optionArrow')
+    var viewOptionText = document.getElementById('viewOptionText')
+    var sliderHolder = document.getElementsByClassName('sliderHolder')[0]
+    var sliders = document.getElementsByClassName('slider')
+    trigger.onclick = function() {
+      clicked = 1 - clicked
+      optionArrow.style.transform = optionArrow.style.webkitTransform = clicked ? 'rotate(45deg)' : 'rotate(-45deg)'
+      viewOptionText.innerText = clicked ? 'close options' : 'view options'
       if (clicked) {
-        clicked = false;
-        $(this).html('<h3 class="nopadding">close options/help 🡶</h3>');
-        $(".slider").css({
-          "top": "-265px"
-        })
+        sliderHolder.classList.add('slided')
       } else {
-        clicked = true;
-        $(this).html('<h3 class="nopadding">view options/help 🡲</h3>');
-        $(".slider").css({
-          "top": 0
-        });
+        sliderHolder.classList.remove('slided')
       }
-    });
+      sliders[0].style.opacity = 1 - clicked
+      sliders[2].style.opacity = clicked
+    }
+    /*
+    var hostnames = ['arrax-client.glitch.me']
+    if (window !== window.top || hostnames.indexOf(window.location.hostname) === -1) {
+      window.addEventListener('load', function() {
+        document.write('<h1>You are on a framed version of arrax, the original game is at <a href="http://arrax-client.glitch.me/">http://arrax-client.glitch.me/</a></h1>')
+      })
+      document.body.addEventListener('click', function() {
+        window.top.location = 'http://arrax-client.glitch.me/'
+      })
+      window.top.location = 'http://arrax-client.glitch.me/'
+    }
+    */
+    window.onerror = function(message, source, lineno, colno, error) {
+      window.onerror = null
+      if (error) error = error.toString()
+      console.warn('The game crashed, refreshing page to recover from error')
+      if (error == null && lineno == 0 && colno == 0) return
+      var e = JSON.stringify({
+        message: message,
+        source: source,
+        lineno: lineno,
+        colno: colno,
+        error: error
+      })
+      prompt('The game may have crashed, refreshing page to recover from error. Error information: ', e)
+    }
+  })()
   </script>
-  <script>
-    $(document).ready(function() {
-      // This is because it acts weird in Chrome for whatever reason...
-      $("#twitterHolder").css({
-        "height": "100%"
-      });
-      // This is for updates
-      if (localStorage.getItem('updated') === 'datgudshit') {
-        localStorage.setItem('updated', false);
-        $('#patchNotesIFrame').load(function() {
-          $("#patchNotesIFrame").contents().find('#patchNotes').prepend('<update>New update!</update> ');
-        });
-      }
-    });
-  </script>
+  <script type="module" src="js/lib/fasttalk.js"></script>
+  <script type="module" src="js/lib/global.js"></script>
+  <script type="module" src="js/lib/util.js"></script>
+  <script type="module" src="js/canvas.js"></script>
+  <script type="module" src="/js/app.js"></script>
 </body>
-
 </html>
