@@ -4279,7 +4279,7 @@ if ( text.name === 'Mega Lord Poseidon') {
                 )
                 ctx.lineWidth = 3;
                 ctx.strokeStyle = color.black;
-                drawGuiRect(x, y, len, height, true); // Border
+                drawGuiRoundRect(x, y, len, height, 10, true); // Border
             }
 
             if (global.mobile) {
