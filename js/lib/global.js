@@ -141,7 +141,7 @@ const global = {
                 id: 'va',
                 type: '0unk',
                 code: 'glitch-virginia',
-                at: 'arras2-ba.herokuapp.com',
+                at: 'zarplex-server-a.onrender.com',
                 secure: 1,
                 prefer: true
             },
