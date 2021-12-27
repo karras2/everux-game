@@ -3722,7 +3722,7 @@ const gameDraw = (() => {
             clearScreen(color.white, 1);
             clearScreen(color.guiblack, 0.1);
 
-            /*ctx.save()
+            ctx.save()
             ctx.beginPath()
             ctx.moveTo(ratio*global.gameWidth*0.25 - px + global.screenWidth / 2, ratio*global.gameHeight*0.0 - py + global.screenHeight / 2)
             ctx.lineTo(ratio*global.gameWidth*0.75 - px + global.screenWidth / 2, ratio*global.gameHeight*0.0 - py + global.screenHeight / 2)
@@ -3731,7 +3731,7 @@ const gameDraw = (() => {
             ctx.lineTo(ratio*global.gameWidth*0.25 - px + global.screenWidth / 2, ratio*global.gameHeight*1.0 - py + global.screenHeight / 2)
             ctx.lineTo(ratio*global.gameWidth*0.00 - px + global.screenWidth / 2, ratio*global.gameHeight*0.5 - py + global.screenHeight / 2)
             ctx.closePath()
-            ctx.clip()*/
+            ctx.clip()
             let W = roomSetup[0].length, H = roomSetup.length;
             for (let i = 0; i < H; i++) {
                 let row = roomSetup[i];
