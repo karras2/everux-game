@@ -75,55 +75,42 @@
                 </tbody>
               </table>
               <div class="optionsHeader">Themes</div>
-              <div class="shadowScroll" style="height:125px">
               <select id="optColors" tabindex="-1" onchange="document.getElementById('optCustom').style.display = this.value === 'custom' ? 'block' : 'none'" onfocus="document.getElementById('optCustom').style.display = this.value === 'custom' ? 'block' : 'none'">
-                <option value="normal">Light Colors</option>
-                <option value="dark">Dark Colors</option>
-                <option value="natural">Natural</option>
-                <option value="classic">Classic</option>
-                <option value="pumpkin">Pumpkin Skeleton (Fan-made)</option>
-                <option value="forest">Forest (Fan-made)</option>
-                <option value="midnight">Midnight (Fan-made)</option>
-                <option value="pastel">Snow (Fan-made)</option>
-                <option value="ocean">Coral Reef (Fan-made)</option>
-                <option value="badlands">Badlands (Fan-made)</option>
-                <option value="bleach">Bleach (Fan-made)</option>
-                <option value="custom">Custom</option>
-              </select>
-              <select id="optMobile" tabindex="-1">
-                <option value="joysticks">Joysticks</option>
-                <option value="desktop">Desktop</option>
-              </select>
-              <select id="optBorders" tabindex="-1">
-                <option value="normal">Soft Borders</option>
-                <option value="dark">Dark Borders</option>
-                <option value="neon">Neon Mode</option>
-                <option value="glass">Glass Mode</option>
-              </select>
-              <input id="optCustom" style="display:none" placeholder="Enter your theme code here">
-              <table>
-               <div class="optionsHeader">Client Rendering</div>
-              <table>
-                <tr>
-                  <td><div>
+                           <option value="normal">Light Colors</option>
+                           <option value="dark">Dark Colors</option>
+                           <option value="natural">Natural</option>
+                           <option value="obstar">Obstar</option>
+                           <option value="dexamenes">Dexamenes</option>
+                           <option value="oldmaxtri">Old Maxtri</option>
+                           <option value="classic">Classic</option>
+                           <option value="pumpkin">Pumpkin Skeleton (Fan-made)</option>
+                           <option value="forest">Forest (Fan-made)</option>
+                           <option value="midnight">Midnight (Fan-made)</option>
+                           <option value="pastel">Snow (Fan-made)</option>
+                           <option value="bordeaux">Snow 2</option>
+                           <option value="ocean">Coral Reef (Fan-made)</option>
+                           <option value="badlands">Badlands (Fan-made)</option>
+                           <option value="bleach">Bleach (Fan-made)</option>
+                           <option value="custom">Custom</option>
+                        </select>
+                        <select id="optMobile" tabindex="-1">
+                           <option value="joysticks">Joysticks</option>
+                           <option value="desktop">Desktop</option>
+                        </select>
+                        <select id="optBorders" tabindex="-1">
+                           <option value="normal">Soft Borders</option>
+                           <option value="dark">Dark Borders</option>
+                           <option value="neon">Neon Mode</option>
+                           <option value="glass">Glass Mode</option>
+                        </select>
+                        <input id="optCustom" style="display: none;" placeholder="Enter your theme code here"> 
+                        <div style="height:5px;"></div>
+                        <div class="shadowScroll" style="height:125px">
+                        <table>
+                           <tr>
+                              <td><div>
                     <label class="container"><input id="optScreenshotMode" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Screenshot Mode</label>
                   </div></td>
-                  <td><div>
-                    <label class="container"><input id="optNoPointy" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Classic Traps</label>
-                  </div></td>
-                </tr><tr>
-                  <td><div>
-                    <label class="container"><input id="optFancy" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Low Graphics</label>
-                  </div></td>
-                  <td><div>
-                    <label class="container"><input id="optShield" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Separate Shield Bar</label>
-                  </div></td>
-                </tr><tr>
-                </tr>
-              </table>
-               <div class="optionsHeader">Entity Rendering</div>
-              <table>
-                <tr>
                   <td><div>
                     <label class="container"><input id="optScreenshotMode" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Screenshot Mode</label>
                   </div></td>
