@@ -128,7 +128,7 @@ const global = {
       type: "0unk",
       name: "Loading...",
       code: "heroku-virginia",
-      at: "daffy-alike-riverbed.glitch.me",
+      at: "zarplex-server-1.onrender.com",
       secure: 1,
       prefer: true
     },
