@@ -13,25 +13,14 @@ function lerp(a, b, x, syncWithFps = false) {
   }
   return a + x * (b - a);
 };
-let lerpAngle = (is, to, amount, syncWithFps) => {
-  var normal = {
-                        x: Math.cos(is),
-                        y: Math.sin(is)
-                    };
-                    var normal2 = {
-                        x: Math.cos(to),
-                        y: Math.sin(to)
-                    };
-                    var res = {
-                        x: lerp(normal.x, normal2.x, amount, syncWithFps),
-                        y: lerp(normal.y, normal2.y, amount, syncWithFps)
-                    };
-                    return Math.atan2(res.y, res.x);
-                };
-let camera = {
-      x: 0,
-      y: 0
-    },
+const camera = {
+  time:0,
+  x:0,
+  y:0,
+  fov:10000,
+  vx:0,
+  vy:0,
+}
 
 // Fundamental requires <3
 import { Canvas } from './canvas.js';
