@@ -4181,7 +4181,7 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
                 )
                 ctx.lineWidth = 3;
                 ctx.strokeStyle = color.black;
-                drawGuiRect(x, y, len, height, true); // Border
+                drawGuiRoundRect(x, y, len, height, true, 8); // Border
             }
 
             if (global.mobile) {
