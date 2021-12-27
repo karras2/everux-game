@@ -74,7 +74,7 @@
                   </tr> 
                 </tbody>
               </table>
-              <div class="optionsHeader">Client Rendering</div>
+              <div class="optionsHeader">Themes & Graphics</div>
               <select id="optColors" tabindex="-1" onchange="document.getElementById('optCustom').style.display = this.value === 'custom' ? 'block' : 'none'" onfocus="document.getElementById('optCustom').style.display = this.value === 'custom' ? 'block' : 'none'">
                 <option value="normal">Light Colors</option>
                 <option value="dark">Dark Colors</option>
@@ -120,9 +120,6 @@
                   </div></td>
                 </tr><tr>
                   <td><div>
-                <center><div class="optionsHeader">Grid Size</div></center>
-                <center><div class="optionsHeader">Grid Size</div></center>
-                    </div>
                     <label class="container"><input id="optFancy" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Round Boxes</label>
                   </div></td>
                   <td><div>
@@ -138,7 +135,35 @@
                 </tr><tr>
                 </tr>
               </table>
-               <center><input type="text" class="conceal" tabindex="3" placeholder="Token not required. For Beta Testers only." id="playerKeyInput" maxlength="64" /></center>  
+              <table>
+                <tr>
+                  <td><div>
+                    <label class="container"><input id="optScreenshotMode" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Screenshot Mode</label>
+                  </div></td>
+                  <td><div>
+                    <label class="container"><input id="optNoPointy" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Classic Traps</label>
+                  </div></td>
+                </tr><tr>
+                  <td><div>
+                    <label class="container"><input id="optFancy" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Low Graphics</label>
+                  </div></td>
+                  <td><div>
+                    <label class="container"><input id="optShield" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Separate Shield Bar</label>
+                  </div></td>
+                </tr><tr>
+                  <td><div>
+                    <label class="container"><input id="optAutoLevel" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Auto-Level Up</label>
+                  </div></td>
+                  <td><div>
+                    <label class="container"><input id="optPrediction" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Use New Interpolation</label>
+                  </div></td>
+                </tr><tr>
+                  <td><div>
+                    <label class="container"><input id="optPointy" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Sharp Edges</label>
+                  </div></td>
+                </tr>
+              </table>
+              <center><input type="text" class="conceal" tabindex="3" placeholder="Token not required. For Beta Testers only." id="playerKeyInput" maxlength="64" /></center>  
             </div>
           </div>
           </div>
