@@ -136,6 +136,7 @@ input {
 
 #playerKeyInput {
   padding: 5px;
+  width: 80%
 }
 
 input:focus {
@@ -448,6 +449,10 @@ body.mobile .icon {
     width: 90%;
     height: 100%;
     overflow: auto;
+}
+
+.startButtonHolder {
+  margin-top: 10px;
 }
 
 #startButton {
