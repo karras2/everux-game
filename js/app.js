@@ -815,7 +815,7 @@ let plUpdater;
 
 async function getPlayerData(server, element, locInfo) {
     let isSecure = (server.secure) || (location.protocol === "https:" ? 1 : -1);
-    let url = `${isSecure === 1 ? "https" : "http"}://${server.at}/status.json`;
+    let url = `${isSecure === 1 ? "https" : "http"}://${server.at}/gamemodeData.json`;
 
     let oof = setTimeout(() => {
         server.name = (server.name) ? server.name : '?'; //  != ''
@@ -827,7 +827,6 @@ async function getPlayerData(server, element, locInfo) {
     await util.pullJSON(url).then(res => {
         clearTimeout(oof);
         server.name = res.name;
-        server.gamemode = res.gamemode;
         server.players = `${res.players}/15`;
         if (element && locInfo) element.textContent = `${server.name} | ${locInfo} | ${server.players}`;
     });
@@ -4919,3 +4918,4 @@ if (newsnow) {
   }, 2000)
   updateSnow()
 }
+
