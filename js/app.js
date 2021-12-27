@@ -4320,10 +4320,10 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
                     global.clickables.upgrade.place(i++, x * screenRatio, y * screenRatio, width * screenRatio, height * screenRatio);
                     // Draw box
                     ctx.globalAlpha = 0.5;
-                    ctx.fillStyle = tankMenuScheme[colorIndex + gradientrandomizer];
-                    drawGuiRoundRect(x, y, width, height, 25);
+                    ctx.fillStyle = getColor(colorIndex > 186 ? colorIndex - 86 : colorIndex);
+		    drawGuiRoundRect(x, y, width, height, 25);
                     ctx.globalAlpha = 0.1;
-                    ctx.fillStyle = tankMenuScheme[colorIndex + gradientrandomizer];
+                    ctx.fillStyle = getColor(-10 + (colorIndex++ - (colorIndex > 186 ? 86 : 0)));
                     colorIndex++;
                     drawGuiRoundRect(x, y, width, height*0.6, 25);
                     ctx.fillStyle = color.black;
