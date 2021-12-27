@@ -210,7 +210,7 @@ function getColor(colorNumber) {
       case 71:
         return '#860705';
         
-        default: return color.grey;
+        default: return '#FF0000';
     }
 }
 function getColorDark(givenColor) {
