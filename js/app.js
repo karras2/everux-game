@@ -3708,9 +3708,9 @@ const gameDraw = (() => {
             // Don't move the camera if you're dead. This helps with jitter issues
             let desiredx = motion.predict(player.lastx, player.cx, player.lastvx, player.vx)// + smear.x;
             let desiredy = motion.predict(player.lasty, player.cy, player.lastvy, player.vy)// + smear.y;
-            player.renderx = player.renderx * 0.6 + desiredx * 0.4
+            /*player.renderx = player.renderx * 0.6 + desiredx * 0.4
             player.rendery = player.rendery * 0.6 + desiredy * 0.4
-            if (global.unchainCamera) {
+            if (global.unchainCamera) {*/
                 player.renderx = desiredx
                 player.rendery = desiredy
             }
@@ -3722,7 +3722,7 @@ const gameDraw = (() => {
             clearScreen(color.white, 1);
             clearScreen(color.guiblack, 0.1);
 
-            ctx.save()
+            /*ctx.save()
             ctx.beginPath()
             ctx.moveTo(ratio*global.gameWidth*0.25 - px + global.screenWidth / 2, ratio*global.gameHeight*0.0 - py + global.screenHeight / 2)
             ctx.lineTo(ratio*global.gameWidth*0.75 - px + global.screenWidth / 2, ratio*global.gameHeight*0.0 - py + global.screenHeight / 2)
@@ -3731,7 +3731,7 @@ const gameDraw = (() => {
             ctx.lineTo(ratio*global.gameWidth*0.25 - px + global.screenWidth / 2, ratio*global.gameHeight*1.0 - py + global.screenHeight / 2)
             ctx.lineTo(ratio*global.gameWidth*0.00 - px + global.screenWidth / 2, ratio*global.gameHeight*0.5 - py + global.screenHeight / 2)
             ctx.closePath()
-            ctx.clip()
+            ctx.clip()*/
             let W = roomSetup[0].length, H = roomSetup.length;
             for (let i = 0; i < H; i++) {
                 let row = roomSetup[i];
