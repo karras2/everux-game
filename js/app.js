@@ -3713,7 +3713,7 @@ const gameDraw = (() => {
             if (global.unchainCamera) {*/
                 player.renderx = desiredx
                 player.rendery = desiredy
-            }
+            //}
             px = ratio * player.renderx;
             py = ratio * player.rendery;
         }
