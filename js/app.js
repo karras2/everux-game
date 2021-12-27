@@ -6,9 +6,32 @@
 var gradientrandomizer = Math.floor(Math.random() * 75);
 var tankMenuScheme = [ "#fe0e00", "#ff1c00", "#ff2a00", "#ff3800", "#ff4600", "#ff5500", "#ff6300", "#ff7100", "#ff7f00", "#ff8d00", "#ff9b00", "#ffaa00", "#ffb800", "#ffc600", "#ffd400", "#ffe200", "#fff000", "#ffff00", "#f0fe00", "#e2ff00", "#d4ff00", "#c6ff00", "#b8ff00", "#aaff00", "#9bff00", "#8dff00", "#7fff00", "#71ff00", "#63ff00", "#54ff00", "#46ff00", "#38ff00", "#2aff00", "#1cff00", "#0eff00", "#00ff00", "#00ff0f", "#00ff20", "#00ff33", "#00ff48", "#00ff61", "#00ff80", "#00ffa3", "#00ffcc", "#00ffff", "#00ccff", "#00a3ff", "#007eff", "#0866ff", "#0048ff", "#0033ff", "#0020ff", "#000fff", "#0000ff", "#0e00fe", "#1c00ff", "#2a00ff", "#3800ff", "#4600ff", "#5500ff", "#6300ff", "#7100ff", "#7f00ff", "#8d00ff", "#9b00ff", "#aa00ff", "#b800ff", "#c600ff", "#d400ff", "#e200ff", "#f000ff", "#ff00ff", "#fe00f0", "#ff00e2", "#ff00d4", "#ff00c6", "#ff00b8", "#ff00aa", "#ff009b", "#ff008d", "#ff007f", "#ff0071", "#ff0063", "#ff0054", "#ff0046", "#ff0038", "#ff002a", "#ff001c", "#ff000e", "#ff0000", "#fe0e00", "#ff1c00", "#ff2a00", "#ff3800", "#ff4600", "#ff5500", "#ff6300", "#ff7100", "#ff7f00", "#ff8d00", "#ff9b00", "#ffaa00", "#ffb800", "#ffc600", "#ffd400", "#ffe200", "#fff000", "#ffff00", "#f0fe00", "#e2ff00", "#d4ff00", "#c6ff00", "#b8ff00", "#aaff00", "#9bff00", "#8dff00", "#7fff00", "#71ff00", "#63ff00", "#54ff00", "#46ff00", "#38ff00", "#2aff00", "#1cff00", "#0eff00", "#00ff00", "#00ff0f", "#00ff20", "#00ff33", "#00ff48", "#00ff61", "#00ff80", "#00ffa3", "#00ffcc", "#00ffff", "#00ccff", "#00a3ff", "#007eff", "#0061ff", "#0048ff", "#0033ff", "#001eff", "#000dff", "#0000ff", "#0e00fe", "#1c00ff", "#2a00ff", "#3800ff", "#4600ff", "#5500ff", "#6300ff", "#7100ff", "#7f00ff", "#8d00ff", "#9b00ff", "#aa00ff", "#b800ff", "#c600ff", "#d400ff", "#e200ff", "#f000ff", "#ff00ff", "#fe00f0", "#ff00e2", "#ff00d4", "#ff00c6", "#ff00b8", "#ff00aa", "#ff009b", "#ff008d", "#ff007f", "#ff0071", "#ff0063", "#ff0054", "#ff0046", "#ff0038", "#ff002a", "#ff001c", "#ff000e", "#ff0000" ];
 
-function lerp(a, b, x) {
+function lerp(a, b, x, syncWithFps = false) {
+  if (syncWithFps) {
+    if (global.fps < 20) global.fps = 20;
+    x /= global.fps / 60;
+  }
   return a + x * (b - a);
-}
+};
+let lerpAngle = (is, to, amount, syncWithFps) => {
+  var normal = {
+                        x: Math.cos(is),
+                        y: Math.sin(is)
+                    };
+                    var normal2 = {
+                        x: Math.cos(to),
+                        y: Math.sin(to)
+                    };
+                    var res = {
+                        x: lerp(normal.x, normal2.x, amount, syncWithFps),
+                        y: lerp(normal.y, normal2.y, amount, syncWithFps)
+                    };
+                    return Math.atan2(res.y, res.x);
+                };
+let camera = {
+      x: 0,
+      y: 0
+    },
 
 // Fundamental requires <3
 import { Canvas } from './canvas.js';
@@ -40,6 +63,7 @@ let adblockInterval = null
 var config = {
     graphical: {
         screenshotMode: false,
+	lerp: true,
         borderChunk: 5,
         barChunk: 5,
         mininumBorderChunk: 3,
