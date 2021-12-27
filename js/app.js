@@ -3708,12 +3708,12 @@ const gameDraw = (() => {
             // Don't move the camera if you're dead. This helps with jitter issues
             let desiredx = motion.predict(player.lastx, player.cx, player.lastvx, player.vx)// + smear.x;
             let desiredy = motion.predict(player.lasty, player.cy, player.lastvy, player.vy)// + smear.y;
-            /*player.renderx = player.renderx * 0.6 + desiredx * 0.4
+            player.renderx = player.renderx * 0.6 + desiredx * 0.4
             player.rendery = player.rendery * 0.6 + desiredy * 0.4
-            if (global.unchainCamera) {*/
+            if (global.unchainCamera) {
                 player.renderx = desiredx
                 player.rendery = desiredy
-            //}
+            }
             px = ratio * player.renderx;
             py = ratio * player.rendery;
         }
