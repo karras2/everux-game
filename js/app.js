@@ -1744,20 +1744,12 @@ const socketInit = (() => {
             // =====================================================
 
             case 'u': { // uplink
-                  let c = m
-            //     camera.time=lerp(camera.time,c[0], 0.1);
-              camera.time = m[0]
-                              camera.x=lerp(camera.x, c[1],  0.3);
-                              camera.y=lerp(camera.y,c[2], 0.3);
-                              camera.fov=lerp(camera.fov,c[3], 0.3);
-                              camera.vx=lerp(camera.vx,c[4], 0.3);
-                              camera.vy=lerp(camera.vy,c[5], 0.3);
-                let camtime = camera.time,
-                    camx = camera.x,
-                    camy = camera.y,
-                    camfov = camera.fov,
-                    camvx = camera.vx,
-                    camvy = camera.vy,
+                let camtime = m[0],
+                    camx = m[1],
+                    camy = m[2],
+                    camfov = m[3],
+                    camvx = m[4],
+                    camvy = m[5],
                     data = m.slice(6);
                 
                 if (camtime > player.lastUpdate) {
