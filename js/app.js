@@ -5123,8 +5123,11 @@ const gameDrawDisconnected = (() => {
     };
     return () => {
         clearScreen(mixColors(color.red, color.guiblack, 0.3), 0.25);
-        text.disconnected.draw('💀 Disconnected 💀', global.screenWidth / 2, global.screenHeight / 2, 30, color.guiwhite, 'center');
+	    animations.disconnected = lerp(animations.disconnected, 0, .1);
+		ctx.translate(0, animations.disconnected * global.screenHeight);
+	text.disconnected.draw('💀 Disconnected 💀', global.screenWidth / 2, global.screenHeight / 2, 30, color.guiwhite, 'center');
         text.message.draw(global.message, global.screenWidth / 2, global.screenHeight / 2 + 30, 15, color.orange, 'center');
+		ctx.translate(0, -animations.disconnected * global.screenHeight)
     };
 })();
 const gameDrawClosed = (() => {
