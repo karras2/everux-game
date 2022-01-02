@@ -4168,9 +4168,9 @@ const gameDraw = (() => {
             ctx.globalAlpha = 0.04;
             ctx.beginPath();
             let gridsize = 30 * ratio;
-            if (config.graphical.smallGrid) gridsize = 25 * ratio;
-            if (config.graphical.noGrid) gridsize = 10000000 * ratio;
-            if (config.graphical.bigGrid) gridsize = 35 * ratio;
+            if (config.graphical.smallGrid) gridsize = 20 * ratio;
+            if (config.graphical.noGrid) gridsize = 9e9 * ratio;
+            if (config.graphical.bigGrid) gridsize = 45 * ratio;
             for (let x=(global.screenWidth/2-px)%gridsize; x < global.screenWidth; x += gridsize) {
                 ctx.moveTo(x, 0);
                 ctx.lineTo(x, global.screenHeight);
