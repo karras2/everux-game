@@ -163,14 +163,19 @@ input.error {
 }
 
 #startMenu {
-  position: relative;
-  margin: 0 auto;
-  max-height: 310px;
-  padding: 10px;
-  border-radius: 20px;
+	position: relative;
+	margin: auto;
+	width: 400px;
+	padding: 20px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	border-radius: 30px;
+	margin: 10px auto;
+	max-height: 390px;
+	padding: 10px;
   background-color: #DDE6EB;
-  box-sizing: border-box;
-  overflow: hidden;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 .menuTabs {
   height: 26px;
