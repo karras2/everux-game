@@ -885,6 +885,9 @@ for (let server of global.servers) {
 util.retrieveFromLocalStorage('playerNameInput');
 util.retrieveFromLocalStorage('playerKeyInput');
 util.retrieveFromLocalStorage('optScreenshotMode');
+util.retrieveFromLocalStorage('optNoGrid');
+util.retrieveFromLocalStorage('optSmallGrid');
+util.retrieveFromLocalStorage('optBigGrid');
 util.retrieveFromLocalStorage('optShield');
 util.retrieveFromLocalStorage('optFancy');
 util.retrieveFromLocalStorage('optColors');
@@ -2048,6 +2051,12 @@ function startGame() {
     // Get options
     util.submitToLocalStorage('optScreenshotMode');
     config.graphical.screenshotMode = document.getElementById('optScreenshotMode').checked;
+    util.submitToLocalStorage('optNoGrid');
+    config.graphical.noGrid = document.getElementById('optNoGrid').checked;
+    util.submitToLocalStorage('optBigGrid');
+    config.graphical.bigGrid = document.getElementById('optBigGrid').checked;
+    util.submitToLocalStorage('optSmallGrid');
+    config.graphical.smallGrid = document.getElementById('optSmallGrid').checked;
     util.submitToLocalStorage('optFancy');
     config.graphical.pointy = !document.getElementById('optNoPointy').checked;
     util.submitToLocalStorage('optNoPointy');
@@ -4159,6 +4168,9 @@ const gameDraw = (() => {
             ctx.globalAlpha = 0.04;
             ctx.beginPath();
             let gridsize = 30 * ratio;
+            if (config.graphical.smallGrid) gridsize = 25 * ratio;
+            if (config.graphical.noGrid) gridsize = 10000000 * ratio;
+            if (config.graphical.bigGrid) gridsize = 35 * ratio;
             for (let x=(global.screenWidth/2-px)%gridsize; x < global.screenWidth; x += gridsize) {
                 ctx.moveTo(x, 0);
                 ctx.lineTo(x, global.screenHeight);
