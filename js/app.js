@@ -4655,7 +4655,7 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
         if (global.mobile) scaleScreenRatio(1 / 0.8)
 
         if (global.mobile) scaleScreenRatio(1.4)
-        { // Draw leaderboard
+       { // Draw leaderboard
             let vspacing = 4;
             let len = alcoveSize;
             let height = 14;
