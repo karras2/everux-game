@@ -21,6 +21,10 @@ const camera = {
   vx:0,
   vy:0,
 }
+let animations = {
+	connecting: 1,
+	disconnected: 1
+};
 
 // Fundamental requires <3
 import { Canvas } from './canvas.js';
@@ -5103,9 +5107,12 @@ const gameDrawBeforeStart = (() => {
     let tip = randomizedTip[Math.floor(Math.random() * randomizedTip.length)]
     return () => {
     clearScreen(color.white, 0.5);
+	    animations.connecting = lerp(animations.connecting, 0, .1);
+		ctx.translate(0, animations.connecting * global.screenHeight);
     text.connecting.draw('Connecting...', global.screenWidth / 2, global.screenHeight / 2, 30, color.guiwhite, 'center');
     text.message.draw(global.message, global.screenWidth / 2, global.screenHeight / 2 + 30, 15, color.lgreen, 'center');
     text.message.draw(tip, global.screenWidth / 2, global.screenHeight / 2 + 75, 15, color.guiwhite, 'center');
+		ctx.translate(0, -animations.connecting * global.screenHeight)
   };
 })();
 
