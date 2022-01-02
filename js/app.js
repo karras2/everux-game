@@ -21,6 +21,7 @@ const camera = {
   vx:0,
   vy:0,
 }
+
 let animations = {
 	connecting: 1,
 	disconnected: 1
@@ -4619,24 +4620,19 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
             if (global.showDebug) {
                 text.debug[6].draw(
                     'everux.io',
-                    x + len, textY - 6*14 - 2,
+                    x + len, textY - 5*14 - 2,
                     15, color.blue, 'right'
                 );
              
-              text.debug[0].draw(
-                'Players: ' + global.server.players,
-                x + len, textY - 5*14,
-                10, color.teal, 'right'
-            );
                 text.debug[5].draw(
                     'Prediction: ' + GRAPHDATA.toFixed(3),
                     x + len, textY - 4*14,
-                    10, color.red, 'right'
+                    10, color.guiwhite, 'right'
                 );
                 text.debug[4].draw(
                     'Update Rate: ' + metrics.updatetime + 'Hz',
                     x + len, textY - 3*14,
-                    10, color.gold, 'right'
+                    10, color.guiwhite, 'right'
                 );
                
             } else {
@@ -4647,7 +4643,7 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
                 );
             }
             text.debug[3].draw(
-                'Total Players: ' + global.server.players,
+                global.server.players + ' Players',
                 x + len, textY - 2*14,
                 10, metrics.rendertime > 10 ? color.guiwhite : color.orange, 'right'
             );
@@ -4740,7 +4736,8 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
                     drawGuiRoundRect(x, y+height*0.6, width, height*0.4, 25);
                     ctx.globalAlpha = 1;
                     // Find offset location with rotation
-                    let picture = getEntityImageFromMockup(model, gui.color),
+                  let colorToDraw = mockups[model].color === 16 ? gui.color : mockups[model].color;
+                    let picture = getEntityImageFromMockup(model, colorToDraw),
                         position = mockups[model].position,
                         scale = 0.6 * width / position.axis,
                         xx = x + 0.5 * width - scale * position.middle.x * Math.cos(upgradeSpin),
