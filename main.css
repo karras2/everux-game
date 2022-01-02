@@ -168,7 +168,6 @@ input.error {
   background-color: white;
   box-sizing: border-box;
   overflow: hidden;
-  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.15);
 }
 .menuTabs {
   height: 26px;
