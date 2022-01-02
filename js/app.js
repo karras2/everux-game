@@ -4619,9 +4619,9 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
             // Text
             if (global.showDebug) {
                 text.debug[6].draw(
-                    'everux.io',
+                    'zarplex.io',
                     x + len, textY - 5*14 - 2,
-                    15, color.blue, 'right'
+                    15, color.guiwhite, 'right'
                 );
              
                 text.debug[5].draw(
@@ -4637,9 +4637,9 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
                
             } else {
                 text.debug[6].draw(
-                    'everux.io',
+                    'zarplex.io',
                     x + len, textY - 3*14 - 2,
-                    15, color.blue, 'right'
+                    15, color.guiwhite, 'right'
                 );
             }
             text.debug[3].draw(
@@ -5332,4 +5332,3 @@ if (newsnow) {
   }, 2000)
   updateSnow()
 }
-
