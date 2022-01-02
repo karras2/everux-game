@@ -22,6 +22,12 @@ html, body {
   user-select: none;
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0 8px;
+}
+
 body {
   font-family: Ubuntu;
   font-size: 14px;
@@ -41,10 +47,10 @@ html, body, canvas {
 }
 
 h1 {
-  padding: 0;
+  padding: 0 12px;
   margin: 0;
   text-align: center;
-  font: bold 40px/1.1 Ubuntu;
+  font: bold 40px/1.5 Ubuntu;
 }
 
 div.optionsHeader {
@@ -429,15 +435,14 @@ body.mobile .startMenuSlidingContent {
 }
 
 .icon {
-  display: block;
-  width: 96px;
-  height: 96px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin: 3px;
 }
-body.mobile .icon {
-  width: 90px;
-  height: 90px;
+.icon > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 #patchNotesIFrame {
     width: 350px;
