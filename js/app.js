@@ -13,14 +13,6 @@ function lerp(a, b, x, syncWithFps = false) {
   }
   return a + x * (b - a);
 };
-const camera = {
-  time:0,
-  x:0,
-  y:0,
-  fov:10000,
-  vx:0,
-  vy:0,
-}
 
 let animations = {
 	connecting: 1,
@@ -1162,6 +1154,7 @@ var player = {
     view: 1,
     lastUpdate: 0,
     time: 0,
+    nameColor: "#ffffff"
 };
 global.player = player
 // Jumping the gun on motion
@@ -4619,7 +4612,7 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
             // Text
             if (global.showDebug) {
                 text.debug[6].draw(
-                    'zarplex.io',
+                    'cohplex.io',
                     x + len, textY - 5*14 - 2,
                     15, color.guiwhite, 'right'
                 );
@@ -4637,7 +4630,7 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
                
             } else {
                 text.debug[6].draw(
-                    'zarplex.io',
+                    'cohplex.io',
                     x + len, textY - 3*14 - 2,
                     15, color.guiwhite, 'right'
                 );
