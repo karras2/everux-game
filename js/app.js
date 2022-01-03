@@ -892,6 +892,7 @@ util.retrieveFromLocalStorage('optShield');
 util.retrieveFromLocalStorage('optFancy');
 util.retrieveFromLocalStorage('optColors');
 util.retrieveFromLocalStorage('optMiterEdge');
+util.retrieveFromLocalStorage('optMiterText');
 util.retrieveFromLocalStorage('optNoPointy');
 util.retrieveFromLocalStorage('optBorders');
 if (global.mobile)
