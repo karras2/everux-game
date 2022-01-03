@@ -1004,6 +1004,7 @@ util.retrieveFromLocalStorage('optNoGrid');
 util.retrieveFromLocalStorage('optSmallGrid');
 util.retrieveFromLocalStorage('optBigGrid');
 util.retrieveFromLocalStorage('optShield');
+util.retrieveFromLocalStorage("optShaders");
 util.retrieveFromLocalStorage('optFancy');
 util.retrieveFromLocalStorage('optColors');
 util.retrieveFromLocalStorage('optMiterEdge');
@@ -2291,7 +2292,9 @@ function startGame() {
 	config.graphical.bigGrid = document.getElementById('optBigGrid').checked;
 	util.submitToLocalStorage('optSmallGrid');
 	config.graphical.smallGrid = document.getElementById('optSmallGrid').checked;
-	util.submitToLocalStorage('optFancy');
+	util.submitToLocalStorage("optShaders");
+	config.graphical.shaders = !document.getElementById("optShaders").checked;
+  util.submitToLocalStorage('optFancy');
 	config.graphical.pointy = !document.getElementById('optNoPointy').checked;
 	util.submitToLocalStorage('optNoPointy');
 	config.graphical.fancyAnimations = !document.getElementById('optFancy').checked;
@@ -3967,45 +3970,46 @@ const drawEntity = (() => {
 		}
 
 		function getRandomColor() {
-			var letters = '0123456789ABCDEF';
-			var color = '#';
+			var letters = "0123456789ABCDEF";
+			var color = "#";
 			for (var i = 0; i < 6; i++) {
-				color += letters[Math.floor(Math.random() * 16)];
+				color += letters[Math.floor(Math.random() * 16)]
 			}
-			return color;
+			return color
 		}
-
 
 		function setRandomColor() {
-			$("#colorpad").css("background-color", getRandomColor());
+			$("#colorpad").css("background-color", getRandomColor())
 		}
-		// Draw guns  
 		source.guns.update();
 		context.lineWidth = Math.max(config.graphical.mininumBorderChunk, ratio * config.graphical.borderChunk);
+		setColor(context, mixColors(color.grey, render.status.getColor(), render.status.getBlend()));
 		if (source.guns.length === m.guns.length) {
 			let positions = source.guns.getPositions();
 			for (let i = 0; i < m.guns.length; i++) {
 				let g = m.guns[i],
-					position = positions[i] / ((g.aspect === 1) ? 2 : 1),
-					gx =
-					g.offset * Math.cos(g.direction + g.angle + rot) +
-					(g.length / 2 - position) * Math.cos(g.angle + rot),
-					gy =
-					g.offset * Math.sin(g.direction + g.angle + rot) +
-					(g.length / 2 - position) * Math.sin(g.angle + rot);
-				setColor(context, mixColors(getColor(g.color), render.status.getColor(), render.status.getBlend()))
-				drawTrapezoid(
-					context,
-					xx + drawSize * gx,
-					yy + drawSize * gy,
-					drawSize * (g.length / 2 - ((g.aspect === 1) ? position * 2 : 0)),
-					drawSize * g.width / 2,
-					g.aspect,
-					g.angle + rot,
-				); // add back the previous code. g.color?
-			} // @everyone
+					position = positions[i] / (g.aspect === 1 ? 2 : 1),
+					gx = g.offset * Math.cos(g.direction + g.angle + rot) + (g.length / 2 - position) * Math.cos(g.angle + rot),
+					gy = g.offset * Math.sin(g.direction + g.angle + rot) + (g.length / 2 - position) * Math.sin(g.angle + rot);
+				setColor(context, mixColors(getColor(g.color), render.status.getColor(), render.status.getBlend()));
+				if (g.color === 100) {
+					let startX = gx + g.direction * (g.length / 2);
+					let startY = gy + g.direction * -(g.length / 2);
+					let endX = gx + g.direction * (g.length / 2);
+					let endY = gy + g.direction * -(g.length / 2);
+					let gradientA = context.createLinearGradient(startX, endX, startY, endY);
+					gradientA.addColorStop(0, "red");
+					gradientA.addColorStop(.5, "green");
+					gradientA.addColorStop(1, "blue");
+					context.fillStyle = gradientA
+				}
+				context.shadowColor = color.black;
+				context.shadowBlur = config.graphical.shaders ? "round" : "20";
+				drawTrapezoid(context, xx + drawSize * gx, yy + drawSize * gy, drawSize * (g.length / 2 - (g.aspect === 1 ? position * 2 : 0)), drawSize * g.width / 2, g.aspect, g.angle + rot, g.skin, g.color);
+				context.shadowBlur = 0
+			}
 		} else {
-			throw new Error("Mismatch gun number with mockup.");
+			throw new Error("Mismatch gun number with mockup.")
 		}
 		// Draw body
 		context.globalAlpha = 1;
@@ -4409,17 +4413,7 @@ const gameDraw = (() => {
 		{ // Clear the background + draw grid
 			clearScreen(color.white, 1);
 			clearScreen(color.guiblack, 0.1);
-
-			/*ctx.save()
-			ctx.beginPath()
-			ctx.moveTo(ratio*global.gameWidth*0.25 - px + global.screenWidth / 2, ratio*global.gameHeight*0.0 - py + global.screenHeight / 2)
-			ctx.lineTo(ratio*global.gameWidth*0.75 - px + global.screenWidth / 2, ratio*global.gameHeight*0.0 - py + global.screenHeight / 2)
-			ctx.lineTo(ratio*global.gameWidth*1.00 - px + global.screenWidth / 2, ratio*global.gameHeight*0.5 - py + global.screenHeight / 2)
-			ctx.lineTo(ratio*global.gameWidth*0.75 - px + global.screenWidth / 2, ratio*global.gameHeight*1.0 - py + global.screenHeight / 2)
-			ctx.lineTo(ratio*global.gameWidth*0.25 - px + global.screenWidth / 2, ratio*global.gameHeight*1.0 - py + global.screenHeight / 2)
-			ctx.lineTo(ratio*global.gameWidth*0.00 - px + global.screenWidth / 2, ratio*global.gameHeight*0.5 - py + global.screenHeight / 2)
-			ctx.closePath()
-			ctx.clip()*/
+      
 			let W = roomSetup[0].length,
 				H = roomSetup.length;
 			for (let i = 0; i < H; i++) {
