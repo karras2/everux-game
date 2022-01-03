@@ -73,18 +73,22 @@ class Canvas {
         break; // Enter to respawn
 
       case global.KEY_UP_ARROW:
+        if (!global.died && global.showTree) return global.scrollX = 0;
       case global.KEY_UP:
         this.set(0, true);
         break;
       case global.KEY_DOWN_ARROW:
+        if (!global.died && global.showTree) return global.scrollX = 1;
       case global.KEY_DOWN:
         this.set(1, true);
         break;
       case global.KEY_LEFT_ARROW:
+        if (!global.died && global.showTree) return global.scrollX -= global.scrollX <= 0 ? 0 : .0045;
       case global.KEY_LEFT:
         this.set(2, true);
         break;
       case global.KEY_RIGHT_ARROW:
+        if (!global.died && global.showTree) return global.scrollX += global.scrollX >= 1 ? 0 : .0045;
       case global.KEY_RIGHT:
         this.set(3, true);
         break;
