@@ -189,7 +189,7 @@ class Canvas {
           global.showDebug = true;
           break;
         case global.KEY_CLASS_TREE:
-          this.emit("P");
+          global.showTree = !global.showTree;
           break;
         case global.KEY_RECORD:
           if (this.cv.captureStream && window.MediaRecorder) {
@@ -327,9 +327,6 @@ class Canvas {
         break;
       case global.KEY_PING:
         global.showDebug = false;
-        break;
-      case global.KEY_CLASS_TREE:
-        global.showTree = false;
         break;
     }
   }
