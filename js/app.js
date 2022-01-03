@@ -25,23 +25,6 @@ import { protocol } from './lib/fasttalk.js';
 import { util } from './lib/util.js';
 import { global } from './lib/global.js';
 
-window.dataLayer = window.dataLayer || [];
-function gtag(){window.dataLayer.push(arguments);}
-gtag('js', new Date());
-
-/*let serverIP = [];
-let serverPort = [];
-  let socket = new WebSocket('http://' + serverIP + '.' + serverPort);
-      window.WebSocket = window.WebSocket || window.MozWebSocket;
-
-
-   serverIP = 'arraz',
-    serverPort = 'io',
-    //still get it to have current link
-    */
-
-gtag('config', 'UA-120544149-1');
-
 let adblock = false
 let adblockInterval = null
 
@@ -4243,138 +4226,173 @@ const gameDraw = (() => {
             metrics.lastrender = getNow();
             return
         }
-        let scaleScreenRatio = (by, unset) => {
-            global.screenWidth /= by
-            global.screenHeight /= by
-            ctx.scale(by, by)
-            if (!unset) screenRatio *= by
-        }
-        scaleScreenRatio(screenRatio, true)
-        // Draw GUI
-        let alcoveSize = 200;
-        let spacing = 20;
-        gui.__s.update();
-        let lb = leaderboard.get();
-        let max = lb.max;
-
-let tankMenuColor = 100 + Math.round(Math.random() * 70),
-    searchName = 'Basic';
-
-       do {
-                            if (!global.showTree) break;
-                            if (global.died) {
-                                global.showTree = false;
-                                global.scrollX = 0;
-                            }
-                            let basic = mockups.find(r => r.name === searchName);
-                            if (!basic) break;
-                            let tiles = [],
-                                branches = [],
-                                measureSize = (x, y, colorIndex, {index, tier = 0}) => {
-                                    tiles.push({x, y, colorIndex, index});
-                                    let {upgrades} = mockups[index];
-                                    switch (tier) {
-                                        case 4:
-                                            return {
-                                                width: 1,
-                                                height: 1
-                                            };
-                                        case 3:
-                                          upgrades.forEach((u, i) => measureSize(x, y + 2 + i, i, u));
-                                          branches.push([{x, y}, {x, y: y + 1 + upgrades.length}]);
-                                            return {
-                                                width: 1, 
-                                                height: 2 + upgrades.length
-                                            };
-                                        case 2:
-                                        case 1:
-                                        case 0:
-                                            {
-                                                let xStart = x,
-                                                    us = upgrades.map((u, i) => {
-                                                        let spacing = 2 * (u.tier - tier),
-                                                            measure = measureSize(x, y + spacing, i, u);
-                                                        branches.push([{
-                                                            x,
-                                                            y: y + (i === 0 ? 0 : 1)
-                                                        }, {
-                                                            x,
-                                                            y: y + spacing
-                                                        }])
-                                                        if (i + 1 === upgrades.length) branches.push([{
-                                                            x: xStart,
-                                                            y: y + 1
-                                                        }, {
-                                                            x,
-                                                            y: y + 1
-                                                        }])
-                                                        x += measure.width
-                                                        return measure
-                                                    })
-                        					return {
-                        						width: us.map(r => r.width).reduce((a, b) => a + b, 0),
-                        						height: 2 + Math.max(...us.map(r => r.height)),
-                        					}
-                        				}
-                                    }
-                                },
-                                full = measureSize(0, 0, 0, {
-                                	index: basic.index
-                                }),
-                                tileDiv = searchName == 'Basic' ? 1 : 1.25,
-                                tileSize = Math.min(global.screenWidth * .9 / full.width * 55, global.screenHeight * .9 / full.height) / tileDiv,
-                                size = tileSize - 4;
-                            for (let [start, end] of branches) {
-                            	let sx = global.screenWidth / 2 + (start.x - full.width  * global.scrollX) * tileSize + 1 + 0.5 * size,
-                            	    sy = global.screenHeight / 2 + (start.y - full.height / 2) * tileSize + 1 + 0.5 * size,
-                            	    ex = global.screenWidth / 2 + (end.x - full.width * global.scrollX) * tileSize + 1 + 0.5 * size,
-                                    ey = global.screenHeight / 2 + (end.y - full.height / 2) * tileSize + 1 + 0.5 * size;
-                            	ctx.strokeStyle = color.black;
-                            	ctx.lineWidth = 2;
-                            	drawGuiLine(sx, sy, ex, ey);
-                            }
-                            for (let {x, y, colorIndex, index} of tiles) {
-                                let ax = global.screenWidth / 2 + (x - full.width * global.scrollX) * tileSize,
-                                    ay = global.screenHeight / 2 + (y - full.height / 2) * tileSize,
-                                    size = tileSize;
-                                colorIndex = tankMenuColor;
-                                if (ax < -50 || ax + size - 50 > global.screenWidth) continue;
-                                ctx.globalAlpha = .75;
-                                ctx.fillStyle = getColor(colorIndex > 185 ? colorIndex - 85 : colorIndex);
-                                drawGuiRect(ax, ay, size, size);
-                                ctx.globalAlpha = .15;
-                                ctx.fillStyle = getColor(-10 + (colorIndex++ - (colorIndex > 185 ? 85 : 0)));
-                                drawGuiRect(ax, ay, size, size * .6);
-                                ctx.fillStyle = color.black;
-                                drawGuiRect(ax, ay + size * .6, size, size * .4);
-                                ctx.globalAlpha = 1;
-                                let angle = -Math.PI / 4,
-                                    picture = getEntityImageFromMockup(index, gui.color),
-                                    position = mockups[index].position,
-                                    scale = .8 * size / position.axis,
-                                    xx = ax + .5 * size - scale * position.middle.x * Math.cos(angle),
-                                    yy = ay + .5 * size - scale * position.middle.x * Math.sin(angle);
-                                drawEntity(xx, yy, picture, .5, 1, scale / picture.size * 2, angle, true);
-                                ctx.strokeStyle = color.black;
-                                ctx.globalAlpha = 1;
-                                ctx.lineWidth = 2;
-                                drawGuiRect(ax, ay, size, size, true);
-                            }
-                        } while (false);
-
-
-        if (global.mobile && canvas.control === 'joysticks') { // joysticks
-            let radius = Math.min(global.screenWidth * 0.6, global.screenHeight * 0.12)
-            ctx.globalAlpha = 0.3
-            ctx.fillStyle = '#ffffff'
-            ctx.beginPath()
-            ctx.arc(global.screenWidth * 1/6, global.screenHeight * 2/3, radius, 0, 2 * Math.PI)
-            ctx.arc(global.screenWidth * 5/6, global.screenHeight * 2/3, radius, 0, 2 * Math.PI)
-            ctx.fill()
-        }
-
+		let scaleScreenRatio = (by, unset) => {
+			global.screenWidth /= by;
+			global.screenHeight /= by;
+			ctx.scale(by, by);
+			if (!unset) screenRatio *= by
+		};
+		scaleScreenRatio(screenRatio, !0);
+		let alcoveSize = 200;
+		let spacing = 20;
+		gui.__s.update();
+		let lb = leaderboard.get();
+		let max = lb.max; {
+			do {
+				if (!global.showTree) break;
+				if (global.died) {
+					global.showTree = !1;
+					global.scrollX = 0
+				}
+				global.smoothTree = lerp(global.smoothTree, global.scrollX, 0.1);
+				let basic = mockups.find(r => r.name === "Basic");
+				if (!basic) {
+					console.log("No basic");
+					break
+				}
+				let tiles = [],
+					branches = [],
+					measureSize = (x, y, colorIndex, {
+						index,
+						tier = 0
+					}) => {
+						tiles.push({
+							x,
+							y,
+							colorIndex,
+							index
+						});
+						let {
+							upgrades
+						} = mockups[index];
+						switch (tier) {
+							case 3:
+								return {
+									width: 1,
+									height: 1
+								};
+							case 2:
+								upgrades.forEach((u, i) => measureSize(x, y + 2 + i, i, u));
+								branches.push([{
+									x,
+									y
+								}, {
+									x,
+									y: y + 1 + upgrades.length
+								}]);
+								return {
+									width: 1,
+									height: 2 + upgrades.length
+								};
+							case 1:
+							case 0:
+								{
+									let xStart = x,
+										us = upgrades.map((u, i) => {
+											let spacing = 2 * (u.tier - tier),
+												measure = measureSize(x, y + spacing, i, u);
+											branches.push([{
+												x,
+												y: y + (i === 0 ? 0 : 1)
+											}, {
+												x,
+												y: y + spacing
+											}]);
+											if (i + 1 === upgrades.length)
+												branches.push([{
+													x: xStart,
+													y: y + 1
+												}, {
+													x,
+													y: y + 1
+												}]);
+											x += measure.width;
+											return measure
+										});
+									return {
+										width: us.map(r => r.width).reduce((a, b) => a + b, 0),
+										height: 2 + Math.max(...us.map(r => r.height))
+									}
+								}
+						}
+					},
+					full = measureSize(0, 0, 0, {
+						index: basic.index
+					}),
+					tileDiv = !0 ? 1 : 1.25,
+					tileSize = Math.min(((global.screenWidth * 0.9) / full.width) * 55, (global.screenHeight * 0.9) / full.height) / tileDiv,
+					size = tileSize - 0;
+				for (let [start, end] of branches) {
+					let sx = global.screenWidth / 2 + (start.x - full.width * global.smoothTree) * tileSize + 1 + 0.5 * size,
+						sy = global.screenHeight / 2 + (start.y - full.height / 2) * tileSize + 1 + 0.5 * size,
+						ex = global.screenWidth / 2 + (end.x - full.width * global.smoothTree) * tileSize + 1 + 0.5 * size,
+						ey = global.screenHeight / 2 + (end.y - full.height / 2) * tileSize + 1 + 0.5 * size;
+					ctx.strokeStyle = color.black;
+					ctx.lineWidth = 2;
+					drawGuiLine(sx, sy, ex, ey)
+				}
+				ctx.globalAlpha = 0.5;
+				ctx.fillStyle = color.guiwhite;
+				ctx.fillRect(0, 0, innerWidth, innerHeight);
+				let text = "";
+				ctx.font = "20px Ubuntu";
+				let w = ctx.measureText(text).width;
+				ctx.globalAlpha = 1;
+				ctx.lineWidth = 1;
+				ctx.fillStyle = color.red;
+				ctx.strokeStyle = color.black;
+				ctx.fillText(text, (innerWidth / 2) - (w / 2), innerHeight * 0.04);
+				ctx.strokeText(text, (innerWidth / 2) - (w / 2), innerHeight * 0.04);
+				ctx.globalAlpha = 1;
+				let colorIndex2 = global.tankMenuColor;
+				for (let {
+						x,
+						y,
+						colorIndex,
+						index
+					} of tiles) {
+					colorIndex2++;
+					if (colorIndex2 > 185) colorIndex2 = 100;
+					let ax = global.screenWidth / 2 + (x - full.width * global.smoothTree) * tileSize,
+						ay = global.screenHeight / 2 + (y - full.height / 2) * tileSize,
+						size = tileSize - 4;
+					if (ax < -50 || ax + size - 50 > global.screenWidth) continue;
+					ctx.globalAlpha = 0.75;
+					ctx.fillStyle = getColor(colorIndex2);
+					drawGuiRoundRect(ax, ay, size, size, 10);
+					ctx.globalAlpha = 0.15;
+					ctx.fillStyle = getColor(0);
+					drawGuiRoundRect(ax, ay, size, size * 0.6, 10);
+					ctx.fillStyle = color.black;
+					drawGuiRoundRect(ax, ay + size * 0.6, size, size * 0.4, 10);
+					ctx.globalAlpha = 1;
+					let angle = -Math.PI / 4,
+						picture = getEntityImageFromMockup(index, 10),
+						position = mockups[index].position,
+						scale = (0.8 * size) / position.axis,
+						xx = ax + 0.5 * size - scale * position.middle.x * Math.cos(angle),
+						yy = ay + 0.5 * size - scale * position.middle.x * Math.sin(angle);
+					drawEntity(xx, yy, picture, 0.5, 1, (scale / picture.size) * 2, angle, !0);
+					ctx.strokeStyle = color.black;
+					ctx.globalAlpha = 1;
+					ctx.lineWidth = 2;
+					drawGuiRoundRect(ax, ay, size, size, 10, !0)
+				}
+			} while (!1);
+		}
+		let tankMenuColor = 100 + Math.round(Math.random() * 70);
+		if (global.mobile && canvas.control === "joysticks") {
+			let radius = Math.min(global.screenWidth * 0.6, global.screenHeight * 0.12);
+			ctx.globalAlpha = 0.3;
+			ctx.fillStyle = "#ffffff";
+			ctx.beginPath();
+			ctx.arc((global.screenWidth * 1) / 6, (global.screenHeight * 2) / 3, radius, 0, 2 * Math.PI);
+			ctx.arc((global.screenWidth * 5) / 6, (global.screenHeight * 2) / 3, radius, 0, 2 * Math.PI);
+			ctx.fill()
+		}
         if (global.mobile) scaleScreenRatio(1.4)
         { // Draw messages
+  			if (global.showTree) return;
             let vspacing = 4;
             let len = 0;
             let height = 18;
@@ -4418,6 +4436,7 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
         }
         if (global.mobile) scaleScreenRatio(1 / 1.4)
         if (!global.mobile) { // Draw skill bars
+   			if (global.showTree) return;
             global.canSkill = gui.points > 0 && gui.skills.some(skill => skill.amount < skill.cap);
             statMenu.set(0 + (global.canSkill || global.died || global.statHover));
             global.clickables.stat.hide();
@@ -4555,6 +4574,7 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
 		}
         if (global.mobile) scaleScreenRatio(0.8)
         { // Draw minimap and FPS monitors
+		   	if (global.showTree) return;
             let len = alcoveSize
             let height = len/global.gameWidth*global.gameHeight
             let x = global.screenWidth - spacing
@@ -4676,6 +4696,7 @@ let tankMenuColor = 100 + Math.round(Math.random() * 70),
 
         if (global.mobile) scaleScreenRatio(1.4)
        { // Draw leaderboard
+			     if (global.showTree) return;
             let vspacing = 4;
             let len = alcoveSize;
             let height = 14;
