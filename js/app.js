@@ -2704,8 +2704,8 @@ const TextObj = (() => {
                     tctx.textAlign = align; tctx.textBaseline = 'middle';
                     tctx.strokeStyle = color.black;
                     tctx.fillStyle = fill;
-					          if (config.graphical.miterText) tctx.lineJoin = "round";
-					          if (config.graphical.miterText) tctx.lineJoin = "round";
+					          if (config.graphical.miterText) tctx.lineJoin = "miter";
+					          if (config.graphical.miterText) tctx.lineJoin = "miter";
                     tctx.strokeText(text, xx, yy);
                     tctx.fillText(text, xx, yy);
                 }
