@@ -891,6 +891,7 @@ util.retrieveFromLocalStorage('optBigGrid');
 util.retrieveFromLocalStorage('optShield');
 util.retrieveFromLocalStorage('optFancy');
 util.retrieveFromLocalStorage('optColors');
+util.retrieveFromLocalStorage('optMiterEdge');
 util.retrieveFromLocalStorage('optNoPointy');
 util.retrieveFromLocalStorage('optBorders');
 if (global.mobile)
@@ -2051,6 +2052,10 @@ function startGame() {
     // Get options
     util.submitToLocalStorage('optScreenshotMode');
     config.graphical.screenshotMode = document.getElementById('optScreenshotMode').checked;
+    util.submitToLocalStorage('optMiterText');
+    config.graphical.miterText = document.getElementById('optMiterText').checked;
+    util.submitToLocalStorage('optMiterEdge');
+    config.graphical.miterEdge = document.getElementById('optMiterEdge').checked;
     util.submitToLocalStorage('optNoGrid');
     config.graphical.noGrid = document.getElementById('optNoGrid').checked;
     util.submitToLocalStorage('optBigGrid');
@@ -2699,8 +2704,8 @@ const TextObj = (() => {
                     tctx.textAlign = align; tctx.textBaseline = 'middle';
                     tctx.strokeStyle = color.black;
                     tctx.fillStyle = fill;
-                    tctx.lineCap = 'round';
-                    tctx.lineJoin = 'round';
+					          if (config.graphical.miterText) tctx.lineJoin = "round";
+					          if (config.graphical.miterText) tctx.lineJoin = "round";
                     tctx.strokeText(text, xx, yy);
                     tctx.fillText(text, xx, yy);
                 }
@@ -3685,6 +3690,8 @@ const drawEntity = (() => {
         if (typeof context !== 'object') context = ctx
         context.lineCap = 'round';
         context.lineJoin = 'round';
+        if (config.graphical.miterEdge) context.lineCap = 'miter';
+        if (config.graphical.miterEdge) context.lineJoin = 'miter';
         // Draw turrets beneath us
         if (source.turrets.length === m.turrets.length) {
             for (let i = 0; i < m.turrets.length; i++) {
