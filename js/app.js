@@ -3588,7 +3588,14 @@ const drawEntity = (() => {
 				centerX + radius * scale * Math.cos((theta * Math.PI) / 180 + angle),
 				centerY + radius * scale * Math.sin((theta * Math.PI) / 180 + angle)
 			);
-      }  else if (sides == 9000) { // Arraz Profile
+         } else if (sides === 1600) {
+			for (let i = 0; i < 16; i++) {
+				let theta = i / 16 * 2 * Math.PI,
+					x = centerX + radius * 1 * Math.cos(180 / 10.3 + theta + angle),
+					y = centerY + radius * 1 * Math.sin(180 / 10.3 + theta + angle);
+				context.lineTo(x, y)
+			}
+         }  else if (sides == 9000) { // Arraz Profile
               let bruh = 3;
           context.save()
               context.beginPath()
