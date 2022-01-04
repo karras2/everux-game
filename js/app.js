@@ -3,6 +3,9 @@
 /*jshint browser: true*/
 
 
+let amongUs = new Image()
+amongUs.src = 'https://cdn.glitch.me/8e33c7e4-e046-464e-b8df-394234c5e3c6/red-among-us-png.png?v=1639883431733'
+
 var gradientrandomizer = Math.floor(Math.random() * 75);
 var tankMenuScheme = ["#fe0e00", "#ff1c00", "#ff2a00", "#ff3800", "#ff4600", "#ff5500", "#ff6300", "#ff7100", "#ff7f00", "#ff8d00", "#ff9b00", "#ffaa00", "#ffb800", "#ffc600", "#ffd400", "#ffe200", "#fff000", "#ffff00", "#f0fe00", "#e2ff00", "#d4ff00", "#c6ff00", "#b8ff00", "#aaff00", "#9bff00", "#8dff00", "#7fff00", "#71ff00", "#63ff00", "#54ff00", "#46ff00", "#38ff00", "#2aff00", "#1cff00", "#0eff00", "#00ff00", "#00ff0f", "#00ff20", "#00ff33", "#00ff48", "#00ff61", "#00ff80", "#00ffa3", "#00ffcc", "#00ffff", "#00ccff", "#00a3ff", "#007eff", "#0866ff", "#0048ff", "#0033ff", "#0020ff", "#000fff", "#0000ff", "#0e00fe", "#1c00ff", "#2a00ff", "#3800ff", "#4600ff", "#5500ff", "#6300ff", "#7100ff", "#7f00ff", "#8d00ff", "#9b00ff", "#aa00ff", "#b800ff", "#c600ff", "#d400ff", "#e200ff", "#f000ff", "#ff00ff", "#fe00f0", "#ff00e2", "#ff00d4", "#ff00c6", "#ff00b8", "#ff00aa", "#ff009b", "#ff008d", "#ff007f", "#ff0071", "#ff0063", "#ff0054", "#ff0046", "#ff0038", "#ff002a", "#ff001c", "#ff000e", "#ff0000", "#fe0e00", "#ff1c00", "#ff2a00", "#ff3800", "#ff4600", "#ff5500", "#ff6300", "#ff7100", "#ff7f00", "#ff8d00", "#ff9b00", "#ffaa00", "#ffb800", "#ffc600", "#ffd400", "#ffe200", "#fff000", "#ffff00", "#f0fe00", "#e2ff00", "#d4ff00", "#c6ff00", "#b8ff00", "#aaff00", "#9bff00", "#8dff00", "#7fff00", "#71ff00", "#63ff00", "#54ff00", "#46ff00", "#38ff00", "#2aff00", "#1cff00", "#0eff00", "#00ff00", "#00ff0f", "#00ff20", "#00ff33", "#00ff48", "#00ff61", "#00ff80", "#00ffa3", "#00ffcc", "#00ffff", "#00ccff", "#00a3ff", "#007eff", "#0061ff", "#0048ff", "#0033ff", "#001eff", "#000dff", "#0000ff", "#0e00fe", "#1c00ff", "#2a00ff", "#3800ff", "#4600ff", "#5500ff", "#6300ff", "#7100ff", "#7f00ff", "#8d00ff", "#9b00ff", "#aa00ff", "#b800ff", "#c600ff", "#d400ff", "#e200ff", "#f000ff", "#ff00ff", "#fe00f0", "#ff00e2", "#ff00d4", "#ff00c6", "#ff00b8", "#ff00aa", "#ff009b", "#ff008d", "#ff007f", "#ff0071", "#ff0063", "#ff0054", "#ff0046", "#ff0038", "#ff002a", "#ff001c", "#ff000e", "#ff0000"];
 
@@ -3585,7 +3588,17 @@ const drawEntity = (() => {
 				centerX + radius * scale * Math.cos((theta * Math.PI) / 180 + angle),
 				centerY + radius * scale * Math.sin((theta * Math.PI) / 180 + angle)
 			);
-		} else if (sides === 135) { // Hexagon (Rotated)
+      }  else if (sides == 9000) { // Arraz Profile
+              let bruh = 3;
+          context.save()
+              context.beginPath()
+              // Let's avoid Zero divisions
+              context.translate(centerX, centerY)
+              context.rotate(angle)
+              //context.scale(radius*bruh, radius*bruh),
+              context.drawImage(amongUs, -radius*0.5*bruh, -radius*0.5*bruh, radius*bruh, radius*bruh)
+
+    } else if (sides === 135) { // Hexagon (Rotated)
 			for (let i = 0; i < 6; i++) {
 				let theta = i / 6 * 2 * Math.PI,
 					x = centerX + radius * 1.1 * Math.cos((180 / 6) + theta + angle + 0.385),
