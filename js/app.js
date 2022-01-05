@@ -161,10 +161,6 @@ function getColor(colorNumber) {
 			return '#8D6ADF';
 		case 31:
 			return '#EAB57A';
-		case 'rainbow':
-			return '#' + Math.floor(Math.random() * 16777215).toString(16);
-			//rainboww
-
 		case 34:
 			return '#ff0000';
 		case 35:
@@ -258,69 +254,33 @@ function getZoneColor(cell) {
 		case 'bas1':
 		case 'bap1':
 		case 'dom1':
-		case 'pro1':
 			return color.blue
 		case 'bas2':
 		case 'bap2':
 		case 'dom2':
-		case 'pro2':
 			return color.green
 		case 'bas3':
 		case 'bap3':
 		case 'dom3':
-		case 'pro3':
 			return color.red
 		case 'bas4':
 		case 'bap4':
 		case 'dom4':
-		case 'pro4':
 			return color.pink
-		case 'domx':
 		case 'dom0':
-		case 'out0':
-		case 'war0':
+		case 'domN':
+		case 'domE':
+		case 'domS':
+		case 'domW':
+		case 'domS':
 			return color.yellow
-		case 'weto':
-			return "#00FFFF"
-		case 'bas8':
-			return color.orange
-		case 'bas5':
-			return color.pink
-		case 'bas7':
-			return color.teal
-		case 'bas6':
-			ctx.globalAlpha = 1
-			return color.guiblack
-		case 'bap8':
-			return color.orange
-		case 'bap5':
-			return color.pink
-		case 'bap7':
-			return color.teal
-		case 'bap6':
-			ctx.globalAlpha = 1
-			return color.guiblack
-		case 'flag':
-			return color.gold
-		case 'galx':
-			return mixColors(color.purple, color.guiblack, 1 / 3)
 		case 'port':
 			ctx.globalAlpha = 1
 			return color.black
 		case 'edge':
 			return mixColors(color.white, color.guiblack, 1 / 3)
-		case 'dor1':
-			return color.vlgrey
 		case 'nest':
 			return color.purple
-		case 'lava':
-			return color.pink
-		case 'bot1':
-			return color.yellow
-		case 'dom3':
-			return color.red
-		case 'jugg':
-			return color.guiblack
 		default:
 			return color.white
 	}
@@ -5441,9 +5401,6 @@ const gameDrawBeforeStart = (() => {
 			'Press the R key to override AI turrets.',
 			'Press Y to toggle ON/OFF the class tree!',
 			'To set the original Diep.io traps, change it with Classic Traps in the menu.',
-		],
-		[
-			'Bosses can quickly destroy players. Try hiding behind a base to take cover!',
 		],
 		[
 			'Hold L to view client/server information!'
