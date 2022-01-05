@@ -22,19 +22,11 @@ let animations = {
 	disconnected: 1
 };
 
-// Fundamental requires <3
-import {
-	Canvas
-} from './canvas.js';
-import {
-	protocol
-} from './lib/fasttalk.js';
-import {
-	util
-} from './lib/util.js';
-import {
-	global
-} from './lib/global.js';
+// All the files in a nutshell
+import { Canvas } from './canvas.js';
+import { protocol } from './lib/fasttalk.js';
+import { util } from './lib/util.js';
+import { global } from './lib/global.js';
 
 let adblock = false
 let adblockInterval = null
@@ -1893,21 +1885,6 @@ const socketInit = (() => {
 						});
 					}
 					break;
-					// =====================================================
-					// Chat System.
-					// =====================================================
-				case 'h':
-					{ // Chat message
-						chatMessages.push({
-							text: m[0],
-							status: 2,
-							alpha: 0,
-							time: Date.now()
-						});
-					}
-					break;
-					// =====================================================
-
 				case 'u':
 					{ // uplink
 						let camtime = m[0],
@@ -2018,7 +1995,7 @@ const socketInit = (() => {
 			if (global.isInGame) {
 				global.isInGame = false
 				if (!global.died)
-					global.message = 'Socket closed. If you disconnected, respawn within 30 seconds to regain your score.';
+					global.message = 'Socket closed. Please refresh your page to continue.';
 			}
 			console.warn('WebSocket closed: ', event);
 			clearInterval(socket.commandCycle);
@@ -2029,18 +2006,16 @@ const socketInit = (() => {
 			if (global.isInGame) {
 				global.isInGame = false
 				if (!global.died);
-				//global.message = 'Socket closed. If you disconnected, respawn within 30 seconds to regain your score.';
+				    global.message = 'Socket closed. Please refresh your page to continue.';
 			}
 			console.warn('WebSocket closed: ', event);
 			clearInterval(socket.commandCycle);
 		};
-		// Notify about errors
 		socket.onerror = function socketError(error) {
 			console.warn('WebSocket error', error);
 			global.message = 'Socket error. Maybe another server will work.';
 			global.isInGame = false
 		};
-		// Gift it to the rest of the world
 		return socket;
 	};
 })();
@@ -5274,11 +5249,8 @@ const gameDrawDead = (() => {
 			'bruh',
 		],
 		[
-			'Read these messages for more tips for playing ;)',
 			'The hardest boss is the Eternal.',
-			'Celestials can not be fought alone. Try gathering a group to help!',
-			'An Elite bosses weakness is traps! Use this to your advantage.',
-			"Have a high score? Submit it on Discord!",
+			"This a high score? Submit it on Discord!",
 		],
 		[
 			'Bosses can quickly destroy players. Try hiding behind a base to take cover!',
@@ -5392,15 +5364,15 @@ const gameDrawBeforeStart = (() => {
 	};
 	let tips = [
 		[
-			"Don't like the look of the game? Try changing the theme!",
-			'You can hold N to level up instantly!',
+			"Tip: Don't like the look of the game? Try changing the theme!",
+			'Tip: You can hold N to instantly pass the foraging stage!',
 		],
 		[
-			'Press the E key to toggle auto-fire.',
-			'Press the C key to toggle auto-spin.',
-			'Press the R key to override AI turrets.',
-			'Press Y to toggle ON/OFF the class tree!',
-			'To set the original Diep.io traps, change it with Classic Traps in the menu.',
+			'Tip: Press the E key to toggle auto-fire.',
+			'Tip: Press the C key to toggle auto-spin.',
+			'Tip: Press the R key to override AI turrets.',
+			'Tip: Press Y to toggle ON/OFF the class tree!',
+			'Tip: To set the original Diep.io traps, change it with Classic Traps in the menu.',
 		],
 		[
 			'Hold L to view client/server information!'
@@ -5413,8 +5385,7 @@ const gameDrawBeforeStart = (() => {
 		animations.connecting = lerp(animations.connecting, 0, .1);
 		ctx.translate(0, animations.connecting * global.screenHeight);
 		text.connecting.draw('Connecting...', global.screenWidth / 2, global.screenHeight / 2, 30, color.guiwhite, 'center');
-		text.message.draw(global.message, global.screenWidth / 2, global.screenHeight / 2 + 30, 15, color.lgreen, 'center');
-		text.message.draw(tip, global.screenWidth / 2, global.screenHeight / 2 + 75, 15, color.guiwhite, 'center');
+		text.message.draw(tip, global.screenWidth / 2, global.screenHeight / 2 + 30, 15, color.guiwhite, 'center');
 		ctx.translate(0, -animations.connecting * global.screenHeight)
 	};
 })();
@@ -5433,19 +5404,6 @@ const gameDrawDisconnected = (() => {
 		ctx.translate(0, -animations.disconnected * global.screenHeight)
 	};
 })();
-const gameDrawClosed = (() => {
-	let text = {
-		Closed: TextObj(),
-		message: TextObj(),
-	};
-	return () => {
-		clearScreen(mixColors(color.red, color.guiblack, 0.3), 0.25);
-		text.Closed.draw('💀 Disconnected 💀', global.screenWidth / 2, global.screenHeight / 2, 30, color.guiwhite, 'center');
-		text.message.draw(global.message, global.screenWidth / 2, global.screenHeight / 2 + 30, 15, color.orange, 'center');
-		text.message.draw('Arena is closed. Please reload.', global.screenWidth / 2, global.screenHeight / 2 + 30, 14, color.guiwhite, 'center');
-	};
-})();
-
 // The main function
 function animloop() {
 	global.animLoopHandle = requestAnimationFrame(animloop);
@@ -5478,9 +5436,6 @@ function animloop() {
 	}
 	if (global.disconnected) {
 		gameDrawDisconnected();
-	}
-	if (global.closed) {
-		gameDrawClosed();
 	}
 }
 
