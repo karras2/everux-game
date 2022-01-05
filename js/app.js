@@ -5385,7 +5385,7 @@ const gameDrawBeforeStart = (() => {
 		animations.connecting = lerp(animations.connecting, 0, .1);
 		ctx.translate(0, animations.connecting * global.screenHeight);
 		text.connecting.draw('Connecting...', global.screenWidth / 2, global.screenHeight / 2, 30, color.guiwhite, 'center');
-		text.message.draw(tip, global.screenWidth / 2, global.screenHeight / 2 + 30, 15, color.guiwhite, 'center');
+		text.message.draw(tip, global.screenWidth / 2, global.screenHeight / 2 + 40, 15, color.guiwhite, 'center');
 		ctx.translate(0, -animations.connecting * global.screenHeight)
 	};
 })();
