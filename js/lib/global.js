@@ -134,7 +134,7 @@ const global = {
       type: "0unk",
       name: "Loading...",
       code: "heroku-oregon",
-      at: "domatrix-server-b.herokuapp.com",
+      at: "cohplex-server-2.onrender.com",
       secure: 1,
       prefer: false
     },
