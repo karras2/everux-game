@@ -102,7 +102,6 @@ const global = {
       virginia: ["US East", -4],
       oregon: ["US West", -7],
       frankfurt: ["Europe", 2],
-      sv: ["US West", -7],
       la: ["US West", -7],
       germany: ["Europe", 2],
       london: ["Europe", 1],
