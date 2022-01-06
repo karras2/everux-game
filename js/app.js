@@ -4919,12 +4919,12 @@ const gameDraw = (() => {
 				10, metrics.rendertime > 10 ? color.guiwhite : color.orange, 'right'
 			);
 			text.debug[2].draw(
-				metrics.rendertime + ' FPS / ' + (100 * gui.fps).toFixed(2) + '%',
+				metrics.rendertime + ' FPS : ' + (100 * gui.fps).toFixed(2) + '%',
 				x + len, textY - 1 * 14,
 				10, gui.fps === 1 ? color.guiwhite : color.orange, 'right'
 			);
 			text.debug[1].draw(
-				lag.toFixed(1) + ' ms  ' + global.server.code + ' #' + global.server.id,
+				lag.toFixed(1) + ' ms  - ' + global.server.name,
 				x + len, textY,
 				10, color.guiwhite, 'right'
 			);
