@@ -4924,7 +4924,7 @@ const gameDraw = (() => {
 				10, gui.fps === 1 ? color.guiwhite : color.orange, 'right'
 			);
 			text.debug[1].draw(
-				lag.toFixed(1) + ' ms  - ' + global.server.name,
+				lag.toFixed(1) + ' ms - ' + global.server.name,
 				x + len, textY,
 				10, color.guiwhite, 'right'
 			);
