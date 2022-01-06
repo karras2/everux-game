@@ -5371,8 +5371,9 @@ const gameDrawBeforeStart = (() => {
 			'Tip: Press the E key to toggle auto-fire.',
 			'Tip: Press the C key to toggle auto-spin.',
 			'Tip: Press the R key to override AI turrets.',
-			'Tip: Press Y to toggle ON/OFF the class tree!',
+			'Tip: Press Y to toggle the class tree!',
 			'Tip: To set the original Diep.io traps, change it with Classic Traps in the menu.',
+			'Tip: Have a World Record to share? Submit it on Discord!',
 		],
 		[
 			'Hold L to view client/server information!'
