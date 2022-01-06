@@ -141,11 +141,11 @@ const global = {
     },
     {
       visible: 1,
-      id: "c",
+      id: "gf",
       type: "0unk",
       name: "Loading...",
       code: "heroku-germany",
-      at: "daffy-alike-riverbed.glitch.me",
+      at: "cohplex-server-3.onrender.com",
       secure: 1,
       prefer: false
     }, 
