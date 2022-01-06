@@ -148,6 +148,16 @@ const global = {
       at: "cohplex-server-2.onrender.com",
       secure: 1,
       prefer: false
+    },
+    {
+      visible: 1,
+      id: "va",
+      type: "0unk",
+      name: "Loading...",
+      code: "heroku-germany",
+      at: "zarplex-server-3.onrender.com",
+      secure: 1,
+      prefer: false
     }, 
   ]
     .map((data, i) => ({ data, i }))
