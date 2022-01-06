@@ -135,7 +135,7 @@ const global = {
       type: "0unk",
       name: "Loading...",
       code: "heroku-oregon",
-      at: "cohplex-server-2.onrender.com",
+      at: "zarplex-server-2.onrender.com",
       secure: 1,
       prefer: false
     },
@@ -145,7 +145,7 @@ const global = {
       type: "0unk",
       name: "Loading...",
       code: "heroku-germany",
-      at: "cohplex-server-3.onrender.com",
+      at: "cohplex-server-2.onrender.com",
       secure: 1,
       prefer: false
     }, 
