@@ -189,6 +189,9 @@ class Canvas {
         case global.KEY_PASSIVE:
           this.emit("J");
           break;
+        case global.KEY_CONTROL_ENTITY:
+          this.emit("H");
+          break;
         case global.KEY_PING:
           global.showDebug = true;
           break;
