@@ -4606,9 +4606,9 @@ const gameDraw = (() => {
 						picture = getEntityImageFromMockup(index, 10),
 						position = mockups[index].position,
 						scale = (0.8 * size) / position.axis,
-						xx = ax + 0.5 * size - scale * position.middle.x * Math.cos(upgradeSpin),
-						yy = ay + 0.5 * size - scale * position.middle.x * Math.sin(upgradeSpin);
-					drawEntity(xx, yy, picture, 0.5, 1, (scale / picture.size) * 2, angle, !0);
+						xx = ax + 0.5 * size - scale * position.middle.x * Math.cos(angle),
+						yy = ay + 0.5 * size - scale * position.middle.x * Math.sin(angle);
+					drawEntity(xx, yy, picture, 0.5, 1, (scale / picture.size) * 2, upgradeSpin, !0);
 					ctx.strokeStyle = color.black;
 					ctx.globalAlpha = 1;
 					ctx.lineWidth = 2;
