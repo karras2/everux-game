@@ -1,5 +1,3 @@
-//let global = __webpack_require__(/*! ./lib/global */ "./src/lib/global.js");
-//let global = require('./lib/global.js')
 import { global } from "./lib/global.js";
 
 class Canvas {
