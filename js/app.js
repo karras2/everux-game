@@ -4959,6 +4959,7 @@ const gameDraw = (() => {
 				// Leadboard name + score
 				text.leaderboard[i].draw(
 					entry.label + ': ' + util.handleLargeNumber(Math.round(entry.score)),
+					entry.label = entry.label.slice(7);
 					x + len / 2, y + height / 2,
 					height - 5, entry.nameColor, 'center', true
 
