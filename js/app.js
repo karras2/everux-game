@@ -4791,11 +4791,6 @@ const gameDraw = (() => {
 			drawBar(x + len * 0.1, x + len * 0.9, y + height / 2, height - 3 + config.graphical.barChunk, color.black);
 			drawBar(x + len * 0.1, x + len * 0.9, y + height / 2, height - 3, color.grey);
 			drawBar(x + len * 0.1, x + len * (0.1 + 0.8 * ((max) ? Math.min(1, gui.__s.getScore() / max) : 1)), y + height / 2, height - 3.5, color.green);
-var gradient = ctx.createLinearGradient(20,0, 220,0);
-
-gradient.addColorStop(0, 'green');
-gradient.addColorStop(.5, 'cyan');
-gradient.addColorStop(1, 'green');
 			// Draw the score
 			text.score.draw(
 				'Score: ' + util.formatLargeNumber(gui.__s.getScore()),
@@ -4807,7 +4802,7 @@ gradient.addColorStop(1, 'green');
 			text.name.draw(
 				player.name,
 				Math.round(x + len / 2) + 0.5, Math.round(y - 10 - vspacing) + 0.5,
-				32, gradient, 'center'
+				32, player.nameColor, 'center'
 			);
 		}
 		if (text.name === "") {
