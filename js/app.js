@@ -228,13 +228,13 @@ function getColor(colorNumber) {
 			return '#15ea48';
         case 72:
             return mixColors(
-                ["#00d5ff", "#ff9000", "#00d5ff", "#00ff7f", "#00ff7f", "#00ff7f"][
+                ["#00f2ff", "#00f2ff", "#00f2ff", "#00ff7f", "#00ff7f", "#00ff7f"][
                 Math.floor((Date.now() / 200) % 6)
                 ],
-                ["#ff9000", "#00d5ff", "#00ff7f", "#00ff7f", "#00d5ff", "#00ff7f"][
-                Math.floor((Date.now() / 200) % 6)
+                ["#00f2ff", "#00f2ff", "#00ff7f", "#00ff7f", "#00ff7f", "#00f2ff"][
+                Math.floor((Date.now() / 300) % 6)
                 ],
-                (Date.now() / 200) % 1
+                (Date.now() / 300) % 1
             );
 
 		default:
