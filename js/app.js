@@ -3,6 +3,12 @@
 /*jshint browser: true*/
 
 
+var gradient = ctx.createLinearGradient(20,0, 220,0);
+
+gradient.addColorStop(0, 'green');
+gradient.addColorStop(.5, 'cyan');
+gradient.addColorStop(1, 'green');
+
 let amongUs = new Image()
 amongUs.src = '/Light-Green-Among-Us-clipart-transparent.png'
 
@@ -4803,7 +4809,7 @@ const gameDraw = (() => {
 			text.name.draw(
 				player.name,
 				Math.round(x + len / 2) + 0.5, Math.round(y - 10 - vspacing) + 0.5,
-				32, player.nameColor, 'center'
+				32, gradient, 'center'
 			);
 		}
 		if (text.name === "") {
