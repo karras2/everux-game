@@ -2,13 +2,6 @@
 /*jshint -W097*/
 /*jshint browser: true*/
 
-
-var gradient = ctx.createLinearGradient(20,0, 220,0);
-
-gradient.addColorStop(0, 'green');
-gradient.addColorStop(.5, 'cyan');
-gradient.addColorStop(1, 'green');
-
 let amongUs = new Image()
 amongUs.src = '/Light-Green-Among-Us-clipart-transparent.png'
 
@@ -4798,6 +4791,11 @@ const gameDraw = (() => {
 			drawBar(x + len * 0.1, x + len * 0.9, y + height / 2, height - 3 + config.graphical.barChunk, color.black);
 			drawBar(x + len * 0.1, x + len * 0.9, y + height / 2, height - 3, color.grey);
 			drawBar(x + len * 0.1, x + len * (0.1 + 0.8 * ((max) ? Math.min(1, gui.__s.getScore() / max) : 1)), y + height / 2, height - 3.5, color.green);
+var gradient = ctx.createLinearGradient(20,0, 220,0);
+
+gradient.addColorStop(0, 'green');
+gradient.addColorStop(.5, 'cyan');
+gradient.addColorStop(1, 'green');
 			// Draw the score
 			text.score.draw(
 				'Score: ' + util.formatLargeNumber(gui.__s.getScore()),
