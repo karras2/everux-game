@@ -234,7 +234,7 @@ function getColor(colorNumber) {
                 ["#ff9000", "#ffd300", "#00e00b", "#226ef6", "#a913cf", "#ff1000"][
                 Math.floor((Date.now() / 1200) % 6)
                 ],
-                (Date.now() / 1200) % 1
+                (Date.now() / 1200) % 7
             );
 
 		default:
