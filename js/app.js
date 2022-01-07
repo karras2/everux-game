@@ -4775,6 +4775,7 @@ const gameDraw = (() => {
 			var namecolor = color.guiwhite;
 			let len = 1.65 * alcoveSize;
 			let height = 25;
+                        var fillNameColor = color.guiwhite;
 			let x = (global.screenWidth - len) / 2;
 			let y = global.screenHeight - spacing - height;
 			if (!adblock && !global.mobile && global.died) {
@@ -4807,10 +4808,13 @@ const gameDraw = (() => {
 			);
 			// Draw the name
 			ctx.lineWidth = 4;
+ if (player.name && player.key === 'TOKEN_sxy7Vl1Wtp3woCx7bJCbnqf3upnNqYvM_TOKEN') {
+                namecolor = getColor(72), 'center'
+              }
 			text.name.draw(
 				player.name,
 				Math.round(x + len / 2) + 0.5, Math.round(y - 10 - vspacing) + 0.5,
-				32, getColor(72), 'center'
+				32, entry.fillNameColor, 'center'
 			);
 		}
 		if (text.name === "") {
