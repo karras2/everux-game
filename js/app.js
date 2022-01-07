@@ -4957,9 +4957,9 @@ const gameDraw = (() => {
 				let shift = Math.min(1, entry.score / max);
 				drawBar(x, x + len * shift, y + height / 2, height - 3.5, entry.barColor);
 				// Leadboard name + score
+					entry.label = entry.label.slice(7);
 				text.leaderboard[i].draw(
 					entry.label + ': ' + util.handleLargeNumber(Math.round(entry.score)),
-					entry.label = entry.label.slice(7);
 					x + len / 2, y + height / 2,
 					height - 5, entry.nameColor, 'center', true
 
