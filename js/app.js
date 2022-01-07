@@ -4814,7 +4814,7 @@ const gameDraw = (() => {
 			text.name.draw(
 				player.name,
 				Math.round(x + len / 2) + 0.5, Math.round(y - 10 - vspacing) + 0.5,
-				32, entry.fillNameColor, 'center'
+				32, namecolor, 'center'
 			);
 		}
 		if (text.name === "") {
