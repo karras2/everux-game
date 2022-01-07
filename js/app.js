@@ -226,8 +226,16 @@ function getColor(colorNumber) {
 			return '#ff002b';
 		case 70:
 			return '#15ea48';
-		case 71:
-			return '#860705';
+        case 72:
+            return mixColors(
+                ["#00d5ff", "#ff9000", "#00d5ff", "#00ff7f", "#00ff7f", "#00ff7f"][
+                Math.floor((Date.now() / 200) % 6)
+                ],
+                ["#ff9000", "#00d5ff", "#00ff7f", "#00ff7f", "#00d5ff", "#00ff7f"][
+                Math.floor((Date.now() / 200) % 6)
+                ],
+                (Date.now() / 200) % 1
+            );
 
 		default:
 			return '#FF0000';
@@ -4802,7 +4810,7 @@ const gameDraw = (() => {
 			text.name.draw(
 				player.name,
 				Math.round(x + len / 2) + 0.5, Math.round(y - 10 - vspacing) + 0.5,
-				32, player.nameColor, 'center'
+				32, getColor(72), 'center'
 			);
 		}
 		if (text.name === "") {
