@@ -229,12 +229,12 @@ function getColor(colorNumber) {
         case 72:
             return mixColors(
                 ["#ff1000", "#ff9000", "#ffd300", "#00e00b", "#226ef6", "#a913cf"][
-                Math.floor((Date.now() / 200) % 6)
+                Math.floor((Date.now() / 1200) % 6)
                 ],
                 ["#ff9000", "#ffd300", "#00e00b", "#226ef6", "#a913cf", "#ff1000"][
-                Math.floor((Date.now() / 200) % 6)
+                Math.floor((Date.now() / 1200) % 6)
                 ],
-                (Date.now() / 200) % 1
+                (Date.now() / 1200) % 1
             );
 
 		default:
