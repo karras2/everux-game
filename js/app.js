@@ -4942,34 +4942,35 @@ const gameDraw = (() => {
 			);
 
 		}
-		if (global.mobile) scaleScreenRatio(1 / 0.8)
+        if (global.mobile) scaleScreenRatio(1 / 0.8)
 
-		if (global.mobile) scaleScreenRatio(1.4) 
-    { // Draw leaderboard
-			if (global.showTree) return;
-			let vspacing = 4;
-			let len = alcoveSize;
-			let height = 14;
-			let x = global.screenWidth - len - spacing;
-			let y = spacing + height + 14;
-			if (global.mobile)
-				y += (global.canSkill ? alcoveSize / 3 / 1.4 * statMenu.get() : 0) +
-				(global.canUpgrade && spacing * 2 + gui.upgrades.length * (alcoveSize * 0.5 + 14) > x * 1.4 ? alcoveSize / 2 / 1.4 * upgradeMenu.get() : 0)
-			if (lb.data.length > 0)
-				text.lbtitle.draw(
-					'Leaderboard', Math.round(x + len / 2) + 0.5,
-					Math.round(y - 10) + 0.5,
-					height + 4, color.guiwhite, 'center'
-				);
-			for (let i = 0; i < lb.data.length && (!global.mobile || i < 6); i++) {
-				let entry = lb.data[i]
-				drawBar(x, x + len, y + height / 2, height - 3 + config.graphical.barChunk, color.black);
-				drawBar(x, x + len, y + height / 2, height - 3, color.grey);
-				let shift = Math.min(1, entry.score / max);
-				drawBar(x, x + len * shift, y + height / 2, height - 3.5, entry.barColor);
+        if (global.mobile) scaleScreenRatio(1.4)
+        { // Draw leaderboard
+               if (global.showTree) return;
+            let vspacing = 5;
+            let len = alcoveSize;
+            let height = 15;
+            let x = global.screenWidth - len - spacing;
+            let y = spacing + height + 14;
+            if (global.mobile)
+              y += (global.canSkill ? alcoveSize / 3 / 1.4 * statMenu.get() : 0) +
+                   (global.canUpgrade && spacing * 2 + gui.upgrades.length * (alcoveSize * 0.5 + 14) > x * 1.4 ? alcoveSize / 2 / 1.4 * upgradeMenu.get() : 0)
+            if (lb.data.length > 0)
+                text.lbtitle.draw(
+                    'Leaderboard', Math.round(x + len / 2) + 0.5,
+                    Math.round(y - 10) + 0.5,
+                    height + 4, color.teal, 'center'
+                );
+            for (let i = 0; i < lb.data.length && (!global.mobile || i < 6); i++) {
+                let entry = lb.data[i]
+                drawBar(x, x+len, y+height/2, height-3+config.graphical.barChunk, color.black);
+                drawBar(x, x+len, y+height/2, height-3, color.grey);
+                let shift = Math.min(1, entry.score / max);
+                drawBar(x, x+len*shift, y+height/2, height-3.5, entry.barColor);
                 // Leadboard name + score
-                  if (entry.key.startsWith ("TOKEN_sxy7Vl1Wtp3woCx7bJCbnqf3upnNqYvM_TOKEN")){
-                  entry.label = entry.label.slice(7);
+                 if (entry.label.startsWith ("Tech")){
+                   //if (entry.key.startsWith ("KENOSMOMENTOS")){
+              //  entry.label=entry.label.slice(4);
                   text.leaderboard[i].draw(
                     entry.label  + ' - ' + util.handleLargeNumber(Math.round(entry.score)),
                     x + len/2,y + height/2,
@@ -4977,7 +4978,6 @@ const gameDraw = (() => {
                     
                );
                     }else{
-                 entry.label = entry.label.slice(7);
                  text.leaderboard[i].draw(
                     entry.label  + ': ' + util.handleLargeNumber(Math.round(entry.score)),
                     x + len/2,y + height/2,
@@ -4987,15 +4987,17 @@ const gameDraw = (() => {
               }
                  
                 // Mini-image
-				let scale = height / entry.position.axis,
-					xx = x - 1.5 * height - scale * entry.position.middle.x * 0.707,
-					yy = y + 0.5 * height + scale * entry.position.middle.x * 0.707;
-				drawEntity(xx, yy, entry.image, 1 / scale, 1, scale * scale / entry.image.size, -Math.PI / 4, true);
-				// Move down
-				y += vspacing + height;
-			}
-		}
-		if (global.mobile) scaleScreenRatio(1 / 1.4)
+                let scale = height / entry.position.axis,
+                    xx = x - 1.5 * height - scale * entry.position.middle.x * 0.707,
+                    yy = y + 0.5 * height + scale * entry.position.middle.x * 0.707;
+                drawEntity(xx, yy, entry.image, 1 / scale, 1, scale * scale / entry.image.size, -Math.PI/4, true);
+                // Move down
+                y += vspacing+height;
+                
+                 
+            }
+        }
+        if (global.mobile) scaleScreenRatio(1 / 1.4)
 
 		{ // Draw upgrade menu
 			global.canUpgrade = gui.upgrades.length > 0 && !(global.mobile && global.died)
