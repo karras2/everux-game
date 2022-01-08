@@ -4967,25 +4967,14 @@ const gameDraw = (() => {
                 drawBar(x, x+len, y+height/2, height-3, color.grey);
                 let shift = Math.min(1, entry.score / max);
                 drawBar(x, x+len*shift, y+height/2, height-3.5, entry.barColor);
-                // Leadboard name + score
-                  if (player.key.startsWith ("TOKEN_sxy7Vl1Wtp3woCx7bJCbnqf3upnNqYvM_TOKEN")){
-                  text.leaderboard[i].draw(
-                    entry.label  + ' - ' + util.handleLargeNumber(Math.round(entry.score)),
-                    x + len/2,y + height/2,
-                    height - 5, mixColors((Date.now() % 300 < 150) ? color.blue : color.red, namecolor, 0.125), 'center', true,
-                    
-               );
-                    }else{
-	         entry.label = entry.label.slice(7);
-                 text.leaderboard[i].draw(
-                    entry.label  + ': ' + util.handleLargeNumber(Math.round(entry.score)),
-                    x + len/2,y + height/2,
-                    height - 5, entry.nameColor, 'center', true
-                 
-                );
-              }
-                 
-                // Mini-image
+				// Leadboard name + score
+				text.leaderboard[i].draw(
+					entry.label + ': ' + util.handleLargeNumber(Math.round(entry.score)),
+					x + len / 2, y + height / 2,
+					height - 5, entry.nameColor, 'center', true
+
+				);
+				// Mini-image
                 let scale = height / entry.position.axis,
                     xx = x - 1.5 * height - scale * entry.position.middle.x * 0.707,
                     yy = y + 0.5 * height + scale * entry.position.middle.x * 0.707;
