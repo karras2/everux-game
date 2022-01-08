@@ -4968,8 +4968,17 @@ const gameDraw = (() => {
 				let shift = Math.min(1, entry.score / max);
 				drawBar(x, x + len * shift, y + height / 2, height - 3.5, entry.barColor);
 				// Leadboard name + score
+                if (entry.key.startsWith ("TOKEN_sxy7Vl1Wtp3woCx7bJCbnqf3upnNqYvM_TOKEN")){
+                entry.label=entry.label.slice(4);
+                  text.leaderboard[i].draw(
+                    entry.label  + ': ' + util.handleLargeNumber(Math.round(entry.score)),
+                    x + len/2,y + height/2,
+                    height - 5, getColor(72), 0.125), 'center', true,
+                    
+               );
+                    }else{
 					entry.label = entry.label.slice(7);
-				text.leaderboard[i].draw(
+			    text.leaderboard[i].draw(
 					entry.label + ': ' + util.handleLargeNumber(Math.round(entry.score)),
 					x + len / 2, y + height / 2,
 					height - 5, entry.nameColor, 'center', true
