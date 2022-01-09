@@ -4048,11 +4048,6 @@ function drawHealth(x, y, instance, ratio, alpha) {
 		var name = instance.name;
 		var namecolor = instance.name.substring(0, 7);
 		let growInSize = ratio * instance.size / 25;
-          if (name.startsWith('b27')) {
-            if (name.length)
-
-                namecolor = mixColors(color.blue, namecolor, 0.125)
-        }
 		ctx.globalAlpha = alpha;
 		instance.render.textobjs[0].draw(instance.name.slice(7), x, y - realSize - 30 * growInSize, 16 * growInSize, namecolor, "center");
 		instance.render.textobjs[1].draw(util.handleLargeNumber(instance.score, !0), x, y - realSize - 16 * growInSize, 8 * growInSize, namecolor, "center");
@@ -4812,10 +4807,6 @@ const gameDraw = (() => {
 				height - 2, namecolor, 'center', true
 			);
 			// Draw the name
-			ctx.lineWidth = 4;
- if (player.name && player.key === 'TOKEN_sxy7Vl1Wtp3woCx7bJCbnqf3upnNqYvM_TOKEN') {
-                namecolor = getColor(72), 'center'
-              }
 			text.name.draw(
 				player.name,
 				Math.round(x + len / 2) + 0.5, Math.round(y - 10 - vspacing) + 0.5,
