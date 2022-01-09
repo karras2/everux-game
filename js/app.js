@@ -4955,7 +4955,7 @@ const gameDraw = (() => {
                 text.lbtitle.draw(
                     'Leaderboard', Math.round(x + len / 2) + 0.5,
                     Math.round(y - 10) + 0.5,
-                    height + 4, color.teal, 'center'
+                    height + 4, color.guiwhite, 'center'
                 );
             for (let i = 0; i < lb.data.length && (!global.mobile || i < 6); i++) {
                 let entry = lb.data[i]
