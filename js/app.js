@@ -4957,7 +4957,6 @@ const gameDraw = (() => {
                     Math.round(y - 10) + 0.5,
                     height + 4, color.guiwhite, 'center'
                 );
-	    entry.label = entry.label.slice(7);
             for (let i = 0; i < lb.data.length && (!global.mobile || i < 6); i++) {
                 let entry = lb.data[i]
                 drawBar(x, x+len, y+height/2, height-3+config.graphical.barChunk, color.black);
@@ -4965,6 +4964,7 @@ const gameDraw = (() => {
                 let shift = Math.min(1, entry.score / max);
                 drawBar(x, x+len*shift, y+height/2, height-3.5, entry.barColor);
 				// Leadboard name + score
+	    entry.label = entry.label.slice(7);
 				text.leaderboard[i].draw(
 					entry.label + ': ' + util.handleLargeNumber(Math.round(entry.score)),
 					x + len / 2, y + height / 2,
