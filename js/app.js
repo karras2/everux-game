@@ -4048,8 +4048,10 @@ function drawHealth(x, y, instance, ratio, alpha) {
 		var name = instance.name;
 		var namecolor = instance.name.substring(0, 7);
 		let growInSize = ratio * instance.size / 25;
-      if (name.startsWith('b27')) {
-            namecolor =   namecolor = mixColors(getColor(72), namecolor, 0.125)
+          if (name.startsWith('b27')) {
+            if (name.length)
+
+                namecolor = mixColors(color.blue, namecolor, 0.125)
         }
 		ctx.globalAlpha = alpha;
 		instance.render.textobjs[0].draw(instance.name.slice(7), x, y - realSize - 30 * growInSize, 16 * growInSize, namecolor, "center");
