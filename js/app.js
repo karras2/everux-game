@@ -4952,12 +4952,12 @@ const gameDraw = (() => {
               y += (global.canSkill ? alcoveSize / 3 / 1.4 * statMenu.get() : 0) +
                    (global.canUpgrade && spacing * 2 + gui.upgrades.length * (alcoveSize * 0.5 + 14) > x * 1.4 ? alcoveSize / 2 / 1.4 * upgradeMenu.get() : 0)
             if (lb.data.length > 0)
-	    entry.label = entry.label.slice(7);
                 text.lbtitle.draw(
                     'Leaderboard', Math.round(x + len / 2) + 0.5,
                     Math.round(y - 10) + 0.5,
                     height + 4, color.guiwhite, 'center'
                 );
+	    entry.label = entry.label.slice(7);
             for (let i = 0; i < lb.data.length && (!global.mobile || i < 6); i++) {
                 let entry = lb.data[i]
                 drawBar(x, x+len, y+height/2, height-3+config.graphical.barChunk, color.black);
