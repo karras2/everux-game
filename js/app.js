@@ -3546,7 +3546,7 @@ const drawEntity = (() => {
               context.rotate(angle)
               //context.scale(radius*bruh, radius*bruh),
               context.drawImage(explosionDrone, -radius*0.5*bruh, -radius*0.5*bruh, radius*bruh, radius*bruh)
-
+        context.restore()
     } else if (sides === 135) { // Hexagon (Rotated)
 			for (let i = 0; i < 6; i++) {
 				let theta = i / 6 * 2 * Math.PI,
