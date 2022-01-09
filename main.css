@@ -93,6 +93,11 @@ h3 {
   color: #04d4d4;
   cursor: default;
 }
+.serverSelector tr.hover {
+  color: #666565;
+  transform: scale(1.02);
+}
+
 
 .shadowScroll {
   overflow-y: scroll;
