@@ -4911,27 +4911,27 @@ const gameDraw = (() => {
 			// Text
 			if (global.showDebug) {
 				text.debug[6].draw(
-					'cohplex.io',
+					'domatrix.io',
 					x + len, textY - 5 * 14 - 2,
-					15, color.guiwhite, 'right'
+					15, '#7d82ff', 'right'
 				);
 
 				text.debug[5].draw(
-					'Prediction: ' + GRAPHDATA.toFixed(3),
+					'Coordinates: (' + player.body.x + '), (' + player.body.y + ')',
 					x + len, textY - 4 * 14,
 					10, color.guiwhite, 'right'
 				);
 				text.debug[4].draw(
-					'Update Rate: ' + metrics.updatetime + 'Hz',
+					metrics.updatetime + 'Hz' + GRAPHDATA.toFixed(3),
 					x + len, textY - 3 * 14,
 					10, color.guiwhite, 'right'
 				);
 
 			} else {
 				text.debug[6].draw(
-					'cohplex.io',
+					'domatrix.io',
 					x + len, textY - 3 * 14 - 2,
-					15, color.guiwhite, 'right'
+					15, '#7d82ff', 'right'
 				);
 			}
 			text.debug[3].draw(
