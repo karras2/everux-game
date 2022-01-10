@@ -124,7 +124,7 @@ const global = {
       type: "0unk",
       name: "Loading...",
       code: "heroku-virginia",
-      at: "zarplex-server-1.onrender.com",
+      at: "domatrix-server-a.herokuapp.com",
       secure: 1,
       prefer: true
     },
