@@ -86,11 +86,11 @@ h3 {
   cursor: pointer;
 }
 .serverSelector tr.featured {
-  color: #e8ae00;
+  color: gold;
   text-shadow: /*#ffe500 0 0 4px,*/ #fff27e 0 0 6px;
 }
 .serverSelector tr.selected {
-  color: #04d4d4;
+  color: #604fff;
   cursor: default;
 }
 .serverSelector tr.hover {
